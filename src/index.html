@@ -62,6 +62,9 @@
                     {% if "web_link" in pub %}
                     <a href="{{ pub.web_link }}">Website</a>
                     {% endif %}
+                    {% if "code_link" in pub %}
+                    <a href="{{ pub.code_link }}">Code</a>
+                    {% endif %}
                     {% if "video_link" in pub %}
                     <a href="{{ pub.video_link }}">Video</a>
                     {% endif %}
