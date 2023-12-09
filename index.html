@@ -37,7 +37,7 @@
         <nav id="sidebar">
             <div id="sidebar-wrapper">
                 <div class="sidebar-header">
-                    <h1><span class="first-name">Grace</span> <span class="last-name">Gao</span></h1>
+                    <h1><span class="first-name">Gege</span> <span class="last-name">Gao</span></h1>
                     <p>Personal Website</p>
                 </div>
 
@@ -49,7 +49,7 @@
                             <svg style="width:20px;height:20px" class="mr-1" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z" />
                             </svg>
-                            grace.heseri at gmail.com
+                            gege.gao at inf.ethz.ch
                         </a>
                     </li>
                     <li><a href="https://scholar.google.com/citations?user=nYYIYaUAAAAJ">
@@ -83,7 +83,8 @@
             <b>Figure 1.</b> Visual records of Gege's workplaces during her PhD journey in Zürich and Tübingen. 
         </p>
         <br>
-        <h2>Bio</h2>
+        <br>
+        <h2><b>Bio</b></h2>
         <p>
             <!-- Hi! My name is Grace (a.k.a Gege). I am currently a research staff at National Laboratory of Pattern Recognition (NLPR) in the Institute of Automation (IA), Chinese Academy of Sciences (CAS), Beijing, China, working with <a href='https://rhe-web.github.io/'>Prof. Dr. Ran He</a>.
             I'll be a Ph.D. student in the <a href="http://www.cvlibs.net/">Autonomous Vision Group</a> (AVG) starting Spring 2022, advised by <a href="https://ps.is.mpg.de/~ageiger">Prof. Dr. Andreas Geiger</a>. -->
@@ -102,11 +103,12 @@
         <h2><b>Publications</b></h2>
         <div id="pubs">
             
+            
+
+
             <div class="pub row pt-3 pb-3">
                 <div class="col-sm-2 pub-preview">
-                    
                     <img src="img/cartrans.jpg" alt="Causal Representation Learning for Context-Aware Face Transfer">
-                    
                 </div>
                 <div class="col">
                     <h4>Causal Representation Learning for Context-Aware Face Transfer</h4>
@@ -122,22 +124,15 @@
                         
                     </div>
                     <div class="pub-venue pb-1">
-                        <small>
+                        <!-- <small>
                         Preprint
                         <span class="pub-award">  </span>
-                        </small>
+                        </small> -->
                     </div>
                     <div class="pub-links">
-                    
-                    <a href="https://arxiv.org/abs/2110.01571">arXiv</a>
-                    
-                    
-                    
-                    
-                    
+                        <a href="https://arxiv.org/abs/2110.01571">arXiv</a>
                     </div>
-                    <div class="pub-description pt-1">
-                        
+                    <div class="pub-description pt-1"> 
                         <p class="pub-abstract">
                         Human face synthesis involves transferring knowledge about the identity and identity-dependent shape of a human face to target face images where the context (\eg, facial expressions, head poses, and other background factors) may change dramatically. Human faces are non-rigid, so facial expression leads to deformation of face shape, and head pose also affects the face observed in 2D images. A key challenge in face transfer is to match the face with unobserved new contexts, adapting the identity-dependent face shape (IDFS) to different poses and expressions accordingly. In this work, we find a way to provide prior knowledge for generative models to reason about the appropriate appearance of a human face in response to various expressions and poses. We propose a novel context-aware face transfer model, called CarTrans, that incorporates causal effects of contextual factors into face representation, and thus is able to be aware of the uncertainty of new contexts. We estimate the effect of facial expression and head pose in terms of counterfactuals by designing a controlled intervention trial, thus avoiding the need for dense multi-view observations to cover the pose-expression space well. Moreover, we propose a kernel regression-based encoder that eliminates the identity specificity of the target face when encoding contextual information from the target image. The resulting method shows impressive performance, allowing fine-grained control over face shape and appearance under various contextual conditions.
                         </p>
@@ -146,11 +141,11 @@
                 </div>
             </div>
             
+            
+
             <div class="pub row pt-3 pb-3">
                 <div class="col-sm-2 pub-preview">
-                    
                     <img src="img/infoswap.png" alt="Information Bottleneck Disentanglement for Identity Swapping">
-                    
                 </div>
                 <div class="col">
                     <h4>Information Bottleneck Disentanglement for Identity Swapping</h4>
@@ -174,33 +169,26 @@
                         </small>
                     </div>
                     <div class="pub-links">
-                    
-                    
-                    <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Gao_Information_Bottleneck_Disentanglement_for_Identity_Swapping_CVPR_2021_paper.html">Paper</a>
-                    
-                    
-                    
-                    <a href="https://github.com/GGGHSL/InfoSwap-master">Code</a>
-                    
-                    
+                        <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Gao_Information_Bottleneck_Disentanglement_for_Identity_Swapping_CVPR_2021_paper.html">Paper</a>
+                        <a href="https://github.com/GGGHSL/InfoSwap-master">Code</a>
                     </div>
                     <div class="pub-description pt-1">
-                        
                         <p class="pub-abstract">
                         Improving the performance of face forgery detectors often requires more identity-swapped images of higher-quality. One core objective of identity swapping is to generate identity-discriminative faces that are distinct from the target while identical to the source. To this end, properly disentangling identity and identity-irrelevant information is critical and remains a challenging endeavor. In this work, we propose a novel information disentangling and swapping network, called InfoSwap, to extract the most expressive information for identity representation from a pre-trained face recognition model. The key insight of our method is to formulate the learning of disentangled representations as optimizing an information bottleneck trade-off, in terms of finding an optimal compression of the pre-trained latent features. Moreover, a novel identity contrastive loss is proposed for further disentanglement by requiring a proper distance between the generated identity and the target. While the most prior works have focused on using various loss functions to implicitly guide the learning of representations, we demonstrate that our model can provide explicit supervision for learning disentangled representations, achieving impressive performance in generating more identity-discriminative swapped faces.
                         </p>
-                        
                     </div>
                 </div>
             </div>
             
-            <small>
+            <!-- <small>
             * = Equal contribution
-            </small>
+            </small> -->
         </div>
     </div>
+    
+    <!-- Education -->
     <div class="coursework pt-4">
-        <h2>Education</h2>
+        <h2><b>Education</b></h2>
         <div class="timeline pt-2">
             <div class="timeline-entry">
                 <div class="timeline-image-holder">
@@ -302,6 +290,8 @@
 </ul>
         </div>
     </div>
+    <!-- /Education -->
+    
     <!-- <div class="coursework pt-2">
         <h2>Misc</h2>
         <p>
