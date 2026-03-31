@@ -45,6 +45,7 @@
                 <ul class="list-unstyled components" id="nav-items">
                      <li class="active" > <a href="index.html#top" onclick="setActive(this)">Home</a> </li>
                      <li> <a href="index.html#research" onclick="setActive(this)">Research</a> </li>
+                     <li> <a href="mailto:grace.heseri@gmail.com" onclick="setActive(this)">Contact</a> </li>
                 </ul>
                 <script>
                 function setActive(el) {
@@ -69,18 +70,18 @@
                             Google Scholar
                         </a>
                     </li>
-                    <li><a href="https://twitter.com/GegeHeseri">
-                            <svg style="width:20px;height:20px" class="mr-1" viewBox="0 0 24 24">
-                                <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                            </svg>
-                            Twitter
-                        </a>
-                    </li>
                     <li> <a href="https://github.com/GGGHSL">
                             <svg style="width:20px;height:20px" class="mr-1" viewBox="0 0 24 24">
                                 <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
                             </svg>
                             Github
+                        </a>
+                    </li>
+                    <li><a href="https://twitter.com/GegeHeseri">
+                            <svg style="width:20px;height:20px" class="mr-1" viewBox="0 0 24 24">
+                                <path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                            Twitter
                         </a>
                     </li>
                     <!-- <li> <a href="https://linkedin.com/in/sx-yu"> -->
@@ -120,7 +121,8 @@
             <a name="research"></a>
             <div class="pt-4">
                 <h2><b>Research Projects</b></h2>
-                (&dagger; indicates project lead)
+                (&dagger; indicates project lead)<br/>
+                <small style="color: #999;">Click on a project to expand its abstract.</small>
                 <script>
                 function toggleDetails(id) {
                     var el = document.getElementById(id);
@@ -176,7 +178,7 @@
                         <div class="publication_links">
                             <!-- <a href="https://arxiv.org/abs/2312.00093">[arXiv]</a> -->
                             <a href="https://decart-4d.github.io/">[Website]</a>
-                            <a href="src/pubs/DecArt.pdf">[Paper]</a>
+                            <!-- <a href="src/pubs/DecArt.pdf">[Paper]</a> -->
                             <a>[Code: Coming Soon]</a>
                         </div>
                     </div>
@@ -216,6 +218,13 @@
                 <div class="publication_detail" id="GraphDreamer2024">
                     <div class="publication_abstract">
                         <b>Abstract:</b> As pretrained text-to-image diffusion models become increasingly powerful, recent efforts have been made to distill knowledge from these text-to-image pretrained models for optimizing a text-guided 3D model. Most of the existing methods generate a holistic 3D model from a plain text input. This can be problematic when the text describes a complex scene with multiple objects, because the vectorized text embeddings are inherently unable to capture a complex description with multiple entities and relationships. Holistic 3D modeling of the entire scene further prevents accurate grounding of text entities and concepts. To address this limitation, we propose GraphDreamer, a novel framework to generate compositional 3D scenes from scene graphs, where objects are represented as nodes and their interactions as edges. By exploiting node and edge information in scene graphs, our method makes better use of the pretrained text-to-image diffusion model and is able to fully disentangle different objects without image-level supervision. To facilitate modeling of object-wise relationships, we use signed distance fields as representation and impose a constraint to avoid inter-penetration of objects. To avoid manual scene graph creation, we design a text prompt for ChatGPT to generate scene graphs based on text inputs. We conduct both qualitative and quantitative experiments to validate the effectiveness of GraphDreamer in generating high-fidelity compositional 3D scenes with disentangled object entities.
+
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@Inproceedings{gao2024graphdreamer,
+  author = {Gao, Gege and Liu, Weiyang and Chen, Anpei and Geiger, Andreas and Schölkopf, Bernhard},
+  title = {GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year = {2024},
+}</pre>
                     </div>
                 </div>
 
@@ -240,6 +249,14 @@
                 <div class="publication_detail" id="CarTrans2021">
                     <div class="publication_abstract">
                         <b>Abstract:</b> Human face synthesis involves transferring knowledge about the identity and identity-dependent shape of a human face to target face images where the context (e.g., facial expressions, head poses, and other background factors) may change dramatically. Human faces are non-rigid, so facial expression leads to deformation of face shape, and head pose also affects the face observed in 2D images. A key challenge in face transfer is to match the face with unobserved new contexts, adapting the identity-dependent face shape (IDFS) to different poses and expressions accordingly. In this work, we find a way to provide prior knowledge for generative models to reason about the appropriate appearance of a human face in response to various expressions and poses. We propose a novel context-aware face transfer model, called CarTrans, that incorporates causal effects of contextual factors into face representation, and thus is able to be aware of the uncertainty of new contexts. We estimate the effect of facial expression and head pose in terms of counterfactuals by designing a controlled intervention trial, thus avoiding the need for dense multi-view observations to cover the pose-expression space well. Moreover, we propose a kernel regression-based encoder that eliminates the identity specificity of the target face when encoding contextual information from the target image. The resulting method shows impressive performance, allowing fine-grained control over face shape and appearance under various contextual conditions.
+
+                        <br/><b>BibTeX:</b>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@article{gao2021causal,
+  author = {Gao, Gege and Huang, Huaibo and Fu, Chaoyou and He, Ran},
+  title = {Causal Representation Learning for Context-Aware Face Transfer},
+  journal = {arXiv preprint arXiv:2110.01571},
+  year = {2021}
+}</pre>
                     </div>
                 </div>
 
@@ -263,6 +280,16 @@
                 <div class="publication_detail" id="InfoSwap2021">
                     <div class="publication_abstract">
                         <b>Abstract:</b> Improving the performance of face forgery detectors often requires more identity-swapped images of higher-quality. One core objective of identity swapping is to generate identity-discriminative faces that are distinct from the target while identical to the source. To this end, properly disentangling identity and identity-irrelevant information is critical and remains a challenging endeavor. In this work, we propose a novel information disentangling and swapping network, called InfoSwap, to extract the most expressive information for identity representation from a pre-trained face recognition model. The key insight of our method is to formulate the learning of disentangled representations as optimizing an information bottleneck trade-off, in terms of finding an optimal compression of the pre-trained latent features. Moreover, a novel identity contrastive loss is proposed for further disentanglement by requiring a proper distance between the generated identity and the target. While the most prior works have focused on using various loss functions to implicitly guide the learning of representations, we demonstrate that our model can provide explicit supervision for learning disentangled representations, achieving impressive performance in generating more identity-discriminative swapped faces.
+                        
+                        <br/><b>BibTeX:</b>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@InProceedings{Gao_2021_CVPR,
+  author = {Gao, Gege and Huang, Huaibo and Fu, Chaoyou and Li, Zhaoyang and He, Ran},
+  title = {Information Bottleneck Disentanglement for Identity Swapping},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month = {June},
+  year = {2021},
+  pages = {3404-3413}
+}</pre>
                     </div>
                 </div>
 
