@@ -394,8 +394,23 @@
                 </small>
             </div> -->
 
+            <div style="text-align: left; padding: 20px 0; color: #999;">
+                <small>
+                    Total <span id="visit-count">-</span> visits since Mar 2026
+                </small>
+                <script>
+                fetch('https://hits.sh/ggghsl.github.io.svg')
+                    .then(function(r) { return r.text(); })
+                    .then(function(svg) {
+                        var match = svg.match(/aria-label="hits: (\d+)"/);
+                        if (match) document.getElementById('visit-count').textContent = match[1];
+                    })
+                    .catch(function() {});
+                </script>
+            </div>
+
         </div> <!-- /content -->
-    
+
     </div> <!-- /wrapper -->
 </body>
 
