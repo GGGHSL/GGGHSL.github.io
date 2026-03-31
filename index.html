@@ -42,8 +42,9 @@
                 </div>
 
                 <ul class="list-unstyled components">
-                     <li class="active" > <a href="index.html">About</a> </li> 
+                     <li class="active" > <a href="index.html">Home</a> </li> 
                 </ul>
+                
                 <ul id="links" class="list-unstyled">
                     <li><a class="mail">
                             <svg style="width:20px;height:20px" class="mr-1" viewBox="0 0 24 24">
@@ -85,254 +86,318 @@
 
         <div id="content">
             
-    <div class="about">
-        <img class="banner-image" src="img/banner_2023.jpeg" title="PhD Time">
-        <p style="text-align: center;">
-            <b>Figure 1.</b> Visual records of Gege's workplaces during her PhD journey in Zürich and Tübingen. 
-        </p>
-        <br>
-        <br>
-        <h2><b>Bio</b></h2>
-        <!-- <img class="photo" src="img/photo.png"> -->
-        <!-- width="100" height="100" -->
-        <p>
-            Gege Gao is a Ph.D. student in Computer Science since November 2022, advised by <a href="https://ethz.ch/de/die-eth-zuerich/organisation/who-is-who/infk/details.MTkyMjY0.TGlzdC8xOTA5LDg5MTA1NjU2NQ==.html">Prof. Dr. Bernhard Schölkopf</a> at ETH Zürich and <a href="https://ps.is.mpg.de/~ageiger">Prof. Dr. Andreas Geiger</a> at University of Tübingen and Tübingen AI Center, as shown in Figure 1. Before that, she was a Research Staff at Institute of Automation, Chinese Academy of Sciences since 2020. She received her master's degree of M.Sc. in Applied Statistics from Renmin University of China in 2020, supervised by <a href="http://stat.ruc.edu.cn/Home/People/Faculty/8e5ad6f548314fc1be75429b60164f7b.htm">Prof. Dr. Xiaoling Lu</a>. Her research interests include controllable content creation, inverse graphics, and representation learning and reasoning.
-        </p>
-    </div>
-    <!-- <div class="timeline pt-2">
-        
-        <div class="timeline-entry">
-            <div class="timeline-image-holder">
-            
-            <img src="img/timeline/ETH-D-INFK.png" alt="ETH Zürich">
-            
-            </div>
-            <div class="timeline-time">November 2022</div>
-            <div class="timeline-org">ETH Zürich</div>
-            <div class="timeline-position">D-INFK</div>
-            <div class="timeline-description">Supervisor: Bernhard Schölkopf</div>
-        </div>
-        
-        <div class="timeline-entry">
-            <div class="timeline-image-holder">
-            
-            <img src="img/timeline/avg.svg" alt="University of Tübingen, Tübingen AI Center">
-            
-            </div>
-            <div class="timeline-time">May 2024</div>
-            <div class="timeline-org">University of Tübingen, Tübingen AI Center</div>
-            <div class="timeline-position">Autonomous Vision Group</div>
-            <div class="timeline-description">Supervisor: Andreas Geiger</div>
-        </div>
-        
-    </div> -->
-    <div class="pt-4">
-        <h2><b>Publications</b></h2>
-        <div id="pubs">
-            
-            <div class="pub row pt-3 pb-3">
-                <div class="col-sm-2 pub-preview">
-                    
-                    <img src="img/graphdreamer.jpg" alt="GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs">
-                    
-                </div>
-                <div class="col">
-                    <h4>GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs</h4>
-                    <div class="pub-authors">
-                        
-                        <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
-                        
-                        <a href="https://wyliu.com/">Weiyang Liu</a>, 
-                        
-                        <a href="https://apchenstu.github.io/">Anpei Chen</a>, 
-                        
-                        <a href="https://apchenstu.github.io/">Andreas Geiger</a>, 
-                        
-                        <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>
-                        
+            <div class="about">
+                <img class="banner-image" src="img/banner_2023.jpeg" title="PhD Time">
+                <p style="text-align: center;">
+                    <b>Figure 1.</b> Visual records of Gege's workplaces during her PhD journey in Zürich and Tübingen. 
+                </p>
+                <br>
+                <br>
+                <h2><b>About Me</b></h2>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <img src="img/photo_2026.jpg" alt="Gege Gao" style="width: 100%; border-radius: 8px;">
                     </div>
-                    <div class="pub-venue pb-1">
-                        <small>
-                        
-                        <span class="pub-award">  </span>
-                        </small>
-                    </div>
-                    <div class="pub-links">
-                    
-                    <a href="https://arxiv.org/abs/2312.00093">arXiv</a>
-                    
-                    
-                    <a href="https://arxiv.org/pdf/2312.00093.pdf">Paper</a>
-                    
-                    
-                    <a href="https://graphdreamer.github.io">Website</a>
-                    
-                    
-                    
-                    </div>
-                    <div class="pub-description pt-1">
-                        
-                        <p class="pub-abstract">
-                        As pretrained text-to-image diffusion models become increasingly powerful, recent efforts have been made to distill knowledge from these text-to-image pretrained models for optimizing a text-guided 3D model. Most of the existing methods generate a holistic 3D model from a plain text input. This can be problematic when the text describes a complex scene with multiple objects, because the vectorized text embeddings are inherently unable to capture a complex description with multiple entities and relationships. Holistic 3D modeling of the entire scene further prevents accurate grounding of text entities and concepts. To address this limitation, we propose GraphDreamer, a novel framework to generate compositional 3D scenes from scene graphs, where objects are represented as nodes and their interactions as edges. By exploiting node and edge information in scene graphs, our method makes better use of the pretrained text-to-image diffusion model and is able to fully disentangle different objects without image-level supervision. To facilitate modeling of object-wise relationships, we use signed distance fields as representation and impose a constraint to avoid inter-penetration of objects. To avoid manual scene graph creation, we design a text prompt for ChatGPT to generate scene graphs based on text inputs. We conduct both qualitative and quantitative experiments to validate the effectiveness of GraphDreamer in generating high-fidelity compositional 3D scenes with disentangled object entities.
+                    <div class="col-sm-9">
+                        <p>
+                            Gege Gao is a Ph.D. student in Computer Science since November 2022, advised by <a href="https://ethz.ch/de/die-eth-zuerich/organisation/who-is-who/infk/details.MTkyMjY0.TGlzdC8xOTA5LDg5MTA1NjU2NQ==.html">Prof. Dr. Bernhard Schölkopf</a> at ETH Zürich and <a href="https://ps.is.mpg.de/~ageiger">Prof. Dr. Andreas Geiger</a> at University of Tübingen and Tübingen AI Center. Before that, she was a Research Staff at Institute of Automation, Chinese Academy of Sciences since 2020. She received her master's degree of M.Sc. in Applied Statistics from Renmin University of China in 2020, supervised by <a href="http://stat.ruc.edu.cn/Home/People/Faculty/8e5ad6f548314fc1be75429b60164f7b.htm">Prof. Dr. Xiaoling Lu</a>. Her research interests include controllable content creation, inverse graphics, and representation learning and reasoning.
                         </p>
-                        
                     </div>
                 </div>
             </div>
             
-            <div class="pub row pt-3 pb-3">
-                <div class="col-sm-2 pub-preview">
-                    
-                    <img src="img/causal.png" alt="Causal Representation Learning for Context-Aware Face Transfer">
-                    
-                </div>
-                <div class="col">
-                    <h4>Causal Representation Learning for Context-Aware Face Transfer</h4>
-                    <div class="pub-authors">
-                        
-                        <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
-                        
-                        Huaibo Huang, 
-                        
-                        Chaoyou Fu, 
-                        
-                        Ran He
-                        
-                    </div>
-                    <div class="pub-venue pb-1">
-                        <small>
-                        
-                        <span class="pub-award">  </span>
-                        </small>
-                    </div>
-                    <div class="pub-links">
-                    
-                    <a href="https://arxiv.org/abs/2110.01571">arXiv</a>
-                    
-                    
-                    
-                    
-                    
-                    </div>
-                    <div class="pub-description pt-1">
-                        
-                        <p class="pub-abstract">
-                        Human face synthesis involves transferring knowledge about the identity and identity-dependent shape of a human face to target face images where the context (e.g., facial expressions, head poses, and other background factors) may change dramatically. Human faces are non-rigid, so facial expression leads to deformation of face shape, and head pose also affects the face observed in 2D images. A key challenge in face transfer is to match the face with unobserved new contexts, adapting the identity-dependent face shape (IDFS) to different poses and expressions accordingly. In this work, we find a way to provide prior knowledge for generative models to reason about the appropriate appearance of a human face in response to various expressions and poses. We propose a novel context-aware face transfer model, called CarTrans, that incorporates causal effects of contextual factors into face representation, and thus is able to be aware of the uncertainty of new contexts. We estimate the effect of facial expression and head pose in terms of counterfactuals by designing a controlled intervention trial, thus avoiding the need for dense multi-view observations to cover the pose-expression space well. Moreover, we propose a kernel regression-based encoder that eliminates the identity specificity of the target face when encoding contextual information from the target image. The resulting method shows impressive performance, allowing fine-grained control over face shape and appearance under various contextual conditions.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-            
-            <div class="pub row pt-3 pb-3">
-                <div class="col-sm-2 pub-preview">
-                    
-                    <img src="img/infoswap.png" alt="Information Bottleneck Disentanglement for Identity Swapping">
-                    
-                </div>
-                <div class="col">
-                    <h4>Information Bottleneck Disentanglement for Identity Swapping</h4>
-                    <div class="pub-authors">
-                        
-                        <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
-                        
-                        Huaibo Huang, 
-                        
-                        Chaoyou Fu, 
-                        
-                        Zhaoyang Li, 
-                        
-                        Ran He
-                        
-                    </div>
-                    <div class="pub-venue pb-1">
-                        <small>
-                        CVPR 2021
-                        <span class="pub-award">  </span>
-                        </small>
-                    </div>
-                    <div class="pub-links">
-                    
-                    
-                    <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Gao_Information_Bottleneck_Disentanglement_for_Identity_Swapping_CVPR_2021_paper.html">Paper</a>
-                    
-                    
-                    
-                    <a href="https://github.com/GGGHSL/InfoSwap-master">Code</a>
-                    
-                    
-                    </div>
-                    <div class="pub-description pt-1">
-                        
-                        <p class="pub-abstract">
-                        Improving the performance of face forgery detectors often requires more identity-swapped images of higher-quality. One core objective of identity swapping is to generate identity-discriminative faces that are distinct from the target while identical to the source. To this end, properly disentangling identity and identity-irrelevant information is critical and remains a challenging endeavor. In this work, we propose a novel information disentangling and swapping network, called InfoSwap, to extract the most expressive information for identity representation from a pre-trained face recognition model. The key insight of our method is to formulate the learning of disentangled representations as optimizing an information bottleneck trade-off, in terms of finding an optimal compression of the pre-trained latent features. Moreover, a novel identity contrastive loss is proposed for further disentanglement by requiring a proper distance between the generated identity and the target. While the most prior works have focused on using various loss functions to implicitly guide the learning of representations, we demonstrate that our model can provide explicit supervision for learning disentangled representations, achieving impressive performance in generating more identity-discriminative swapped faces.
-                        </p>
-                        
-                    </div>
-                </div>
-            </div>
-            
-            <!-- <small>
-            * = Equal contribution
-            </small> -->
-        </div>
-    </div>
-    <div class="coursework pt-4">
-        <h2><b>Education</b></h2>
-        <div class="timeline pt-2">
-            
-            <div class="timeline-entry">
-                <div class="timeline-image-holder">
-                
-                <img src="img/timeline/ETH-D-INFK.png" alt="ETH Zürich">
-                
-                </div>
-                <div class="timeline-time">November 2022</div>
-                <div class="timeline-org">ETH Zürich</div>
-                <div class="timeline-position">D-INFK</div>
-                <div class="timeline-description">Supervisor: Bernhard Schölkopf</div>
-            </div>
-            
-            <div class="timeline-entry">
-                <div class="timeline-image-holder">
-                
-                <img src="img/timeline/avg.svg" alt="University of Tübingen, Tübingen AI Center">
-                
-                </div>
-                <div class="timeline-time">May 2024</div>
-                <div class="timeline-org">University of Tübingen, Tübingen AI Center</div>
-                <div class="timeline-position">Autonomous Vision Group</div>
-                <div class="timeline-description">Supervisor: Andreas Geiger</div>
-            </div>
-            
-        </div>
-        <div id="coursework-collapse">
-            <h4><b>M.Sc.</b> in Applied Statistics, 2020</h4>
-<ul>
-    <li>School of Statistics</li>
-    <li>Renmin University of China</li>
-</ul>
-<h4><b>B.Sc.</b> in Applied Statistics, 2017</h4>
-<ul>
-    <li>School of Mathematics and Statistics</li>
-    <li>Central University of Finance and Economics</li>
-</ul>
-        </div>
-    </div>
-    <div class="coursework pt-2">
-        <h2><b>Misc</b></h2>
-        <p>
-            Gege, originally from Beijing, China, carries the Chinese name 格格. Her family's ancestral surname is <a href="https://en.wikipedia.org/wiki/He%C5%A1eri">Hešeri</a> (赫舍里).
-        </p>
-    </div>
-    <div class="pt-2">
-        <small>
-            The source code for this website is forked from <a href="https://github.com/sxyu/sxyu.github.io">this repo</a>.
-        </small>
-    </div>
+            <br>
 
-        </div>
-    </div>
+            <!-- <div class="timeline pt-2">
+                
+                <div class="timeline-entry">
+                    <div class="timeline-image-holder">
+                    
+                    <img src="img/timeline/ETH-D-INFK.png" alt="ETH Zürich">
+                    
+                    </div>
+                    <div class="timeline-time">November 2022</div>
+                    <div class="timeline-org">ETH Zürich</div>
+                    <div class="timeline-position">D-INFK</div>
+                    <div class="timeline-description">Supervisor: Bernhard Schölkopf</div>
+                </div>
+                
+                <div class="timeline-entry">
+                    <div class="timeline-image-holder">
+                    
+                    <img src="img/timeline/avg.svg" alt="University of Tübingen, Tübingen AI Center">
+                    
+                    </div>
+                    <div class="timeline-time">May 2024</div>
+                    <div class="timeline-org">University of Tübingen, Tübingen AI Center</div>
+                    <div class="timeline-position">Autonomous Vision Group</div>
+                    <div class="timeline-description">Supervisor: Andreas Geiger</div>
+                </div>
+                
+            </div> -->
+        
+            <div class="pt-4">
+                <h2><b>Research Projects</b></h2>
+                <div id="pubs">
+                    <div class="pub row pt-3 pb-3">
+                        <div class="col-sm-2 pub-preview">
+                            
+                            <img src="img/trajectory_forcing.svg" alt="Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories">
+                            
+                        </div>
+                        <div class="col">
+                            <h4>Trajectory Forcing: Structure-First Generation with Controllable Semantic Trajectories</h4>
+                            <div class="pub-authors">
+                                <a href="https://tr.linkedin.com/in/merve-kocaba%C5%9F-69b4b6249">Merve Kocabaş</a>, 
+                                
+                                <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
+                                
+                                <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>,
+
+                                <a href="https://apchenstu.github.io/">Andreas Geiger</a>
+                                
+                            </div>
+                            <div class="pub-venue pb-1">
+                                <small>
+                                
+                                <span class="pub-award">  </span>
+                                </small>
+                            </div>
+                            <div class="pub-links">
+                            
+                            <!-- <a href="https://arxiv.org/abs/2312.00093">arXiv</a> -->
+                            
+                            
+                            <!-- <a href="https://arxiv.org/pdf/2312.00093.pdf">Paper</a> -->
+                            
+                            
+                            <!-- <a href="https://graphdreamer.github.io">Website</a> -->
+                            
+                            
+                            
+                            </div>
+                            <div class="pub-description pt-1">
+                                
+                                <p class="pub-abstract">
+                                Diffusion and flow-based generative models typically treat generation as an opaque mapping from noise to image. Although recent methods have begun to exploit trajectory structure for improved quality, intermediate states remain uninterpretable and inaccessible to users. We propose Trajectory Forcing (TF), a framework that elevates the generative trajectory from a hidden computational process to an explicit, controllable object. Generation is organized as a sequence of semantically structured stages, progressing from global layout through object-level parts to fine-grained detail, where every intermediate state can be decoded, inspected, and edited. We construct coarse-to-fine teacher hierarchies via unsupervised clustering in pretrained, semantically meaningful representation spaces (e.g., DINOv2), and train a hierarchy-conditioned model using one-step flow matching at each level. We further introduce trajectory-aware evaluation measures that quantify structural consistency and local controllability beyond standard metrics such as FID. Experiments show that TF achieves competitive sample quality while producing structurally coherent, decodable intermediate states that support localized editing at each semantic level. By shifting the modeling focus from the final model outputs to generative dynamics, Trajectory Forcing enables controllable, trajectory-aware image synthesis.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pub row pt-3 pb-3">
+                        <div class="col-sm-2 pub-preview">
+                            
+                            <img src="img/graphdreamer.jpg" alt="GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs">
+                            
+                        </div>
+                        <div class="col">
+                            <h4>GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs</h4>
+                            <div class="pub-authors">
+                                
+                                <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
+                                
+                                <a href="https://wyliu.com/">Weiyang Liu</a>, 
+                                
+                                <a href="https://apchenstu.github.io/">Anpei Chen</a>, 
+                                
+                                <a href="https://apchenstu.github.io/">Andreas Geiger</a>, 
+                                
+                                <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>
+                                
+                            </div>
+                            <div class="pub-venue pb-1">
+                                <small>
+                                
+                                <span class="pub-award">  </span>
+                                </small>
+                            </div>
+                            <div class="pub-links">
+                            
+                            <a href="https://arxiv.org/abs/2312.00093">arXiv</a>
+                            
+                            
+                            <a href="https://arxiv.org/pdf/2312.00093.pdf">Paper</a>
+                            
+                            
+                            <a href="https://graphdreamer.github.io">Website</a>
+
+                            
+                            <a href="https://github.com/GGGHSL/GraphDreamer">Code</a>
+                            
+                            
+                            </div>
+                            <div class="pub-description pt-1">
+                                
+                                <p class="pub-abstract">
+                                As pretrained text-to-image diffusion models become increasingly powerful, recent efforts have been made to distill knowledge from these text-to-image pretrained models for optimizing a text-guided 3D model. Most of the existing methods generate a holistic 3D model from a plain text input. This can be problematic when the text describes a complex scene with multiple objects, because the vectorized text embeddings are inherently unable to capture a complex description with multiple entities and relationships. Holistic 3D modeling of the entire scene further prevents accurate grounding of text entities and concepts. To address this limitation, we propose GraphDreamer, a novel framework to generate compositional 3D scenes from scene graphs, where objects are represented as nodes and their interactions as edges. By exploiting node and edge information in scene graphs, our method makes better use of the pretrained text-to-image diffusion model and is able to fully disentangle different objects without image-level supervision. To facilitate modeling of object-wise relationships, we use signed distance fields as representation and impose a constraint to avoid inter-penetration of objects. To avoid manual scene graph creation, we design a text prompt for ChatGPT to generate scene graphs based on text inputs. We conduct both qualitative and quantitative experiments to validate the effectiveness of GraphDreamer in generating high-fidelity compositional 3D scenes with disentangled object entities.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pub row pt-3 pb-3">
+                        <div class="col-sm-2 pub-preview">
+                            
+                            <img src="img/causal.png" alt="Causal Representation Learning for Context-Aware Face Transfer">
+                            
+                        </div>
+                        <div class="col">
+                            <h4>Causal Representation Learning for Context-Aware Face Transfer</h4>
+                            <div class="pub-authors">
+                                
+                                <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
+                                
+                                Huaibo Huang, 
+                                
+                                Chaoyou Fu, 
+                                
+                                Ran He
+                                
+                            </div>
+                            <div class="pub-venue pb-1">
+                                <small>
+                                
+                                <span class="pub-award">  </span>
+                                </small>
+                            </div>
+                            <div class="pub-links">
+                            
+                            <a href="https://arxiv.org/abs/2110.01571">arXiv</a>
+                            
+                            
+                            
+                            
+                            
+                            </div>
+                            <div class="pub-description pt-1">
+                                
+                                <p class="pub-abstract">
+                                Human face synthesis involves transferring knowledge about the identity and identity-dependent shape of a human face to target face images where the context (e.g., facial expressions, head poses, and other background factors) may change dramatically. Human faces are non-rigid, so facial expression leads to deformation of face shape, and head pose also affects the face observed in 2D images. A key challenge in face transfer is to match the face with unobserved new contexts, adapting the identity-dependent face shape (IDFS) to different poses and expressions accordingly. In this work, we find a way to provide prior knowledge for generative models to reason about the appropriate appearance of a human face in response to various expressions and poses. We propose a novel context-aware face transfer model, called CarTrans, that incorporates causal effects of contextual factors into face representation, and thus is able to be aware of the uncertainty of new contexts. We estimate the effect of facial expression and head pose in terms of counterfactuals by designing a controlled intervention trial, thus avoiding the need for dense multi-view observations to cover the pose-expression space well. Moreover, we propose a kernel regression-based encoder that eliminates the identity specificity of the target face when encoding contextual information from the target image. The resulting method shows impressive performance, allowing fine-grained control over face shape and appearance under various contextual conditions.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pub row pt-3 pb-3">
+                        <div class="col-sm-2 pub-preview">
+                            
+                            <img src="img/infoswap.png" alt="Information Bottleneck Disentanglement for Identity Swapping">
+                            
+                        </div>
+                        <div class="col">
+                            <h4>Information Bottleneck Disentanglement for Identity Swapping</h4>
+                            <div class="pub-authors">
+                                
+                                <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>, 
+                                
+                                Huaibo Huang, 
+                                
+                                Chaoyou Fu, 
+                                
+                                Zhaoyang Li, 
+                                
+                                Ran He
+                                
+                            </div>
+                            <div class="pub-venue pb-1">
+                                <small>
+                                CVPR 2021
+                                <span class="pub-award">  </span>
+                                </small>
+                            </div>
+                            <div class="pub-links">
+                            
+                            
+                            <a href="https://openaccess.thecvf.com/content/CVPR2021/html/Gao_Information_Bottleneck_Disentanglement_for_Identity_Swapping_CVPR_2021_paper.html">Paper</a>
+                            
+                            
+                            
+                            <a href="https://github.com/GGGHSL/InfoSwap-master">Code</a>
+                            
+                            
+                            </div>
+                            <div class="pub-description pt-1">
+                                
+                                <p class="pub-abstract">
+                                Improving the performance of face forgery detectors often requires more identity-swapped images of higher-quality. One core objective of identity swapping is to generate identity-discriminative faces that are distinct from the target while identical to the source. To this end, properly disentangling identity and identity-irrelevant information is critical and remains a challenging endeavor. In this work, we propose a novel information disentangling and swapping network, called InfoSwap, to extract the most expressive information for identity representation from a pre-trained face recognition model. The key insight of our method is to formulate the learning of disentangled representations as optimizing an information bottleneck trade-off, in terms of finding an optimal compression of the pre-trained latent features. Moreover, a novel identity contrastive loss is proposed for further disentanglement by requiring a proper distance between the generated identity and the target. While the most prior works have focused on using various loss functions to implicitly guide the learning of representations, we demonstrate that our model can provide explicit supervision for learning disentangled representations, achieving impressive performance in generating more identity-discriminative swapped faces.
+                                </p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <small>
+                    * = Equal contribution
+                    </small> -->
+                </div>
+            </div>
+        
+        
+        
+            <!-- <div class="coursework pt-4">
+                <h2><b>Education</b></h2>
+                <div class="timeline pt-2">
+                    
+                    <div class="timeline-entry">
+                        <div class="timeline-image-holder">
+                        
+                        <img src="img/timeline/ETH-D-INFK.png" alt="ETH Zürich">
+                        
+                        </div>
+                        <div class="timeline-time">November 2022</div>
+                        <div class="timeline-org">ETH Zürich</div>
+                        <div class="timeline-position">D-INFK</div>
+                        <div class="timeline-description">Supervisor: Bernhard Schölkopf</div>
+                    </div>
+                    
+                    <div class="timeline-entry">
+                        <div class="timeline-image-holder">
+                        
+                        <img src="img/timeline/avg.svg" alt="University of Tübingen, Tübingen AI Center">
+                        
+                        </div>
+                        <div class="timeline-time">May 2024</div>
+                        <div class="timeline-org">University of Tübingen, Tübingen AI Center</div>
+                        <div class="timeline-position">Autonomous Vision Group</div>
+                        <div class="timeline-description">Supervisor: Andreas Geiger</div>
+                    </div>
+                    
+                </div>
+                <div id="coursework-collapse">
+                    <h4><b>M.Sc.</b> in Applied Statistics, 2020</h4>
+                    <ul>
+                        <li>School of Statistics</li>
+                        <li>Renmin University of China</li>
+                    </ul>
+                    <h4><b>B.Sc.</b> in Applied Statistics, 2017</h4>
+                    <ul>
+                        <li>School of Mathematics and Statistics</li>
+                        <li>Central University of Finance and Economics</li>
+                    </ul>
+                </div>
+            </div> -->
+        
+            <!-- <div class="coursework pt-2">
+                <h2><b>Misc</b></h2>
+                <p>
+                    Gege, originally from Beijing, China, carries the Chinese name 格格. Her family's ancestral surname is <a href="https://en.wikipedia.org/wiki/He%C5%A1eri">Hešeri</a> (赫舍里).
+                </p>
+            </div> -->
+        
+        
+            <!-- <div class="pt-2">
+                <small>
+                    The source code for this website is forked from <a href="https://github.com/sxyu/sxyu.github.io">this repo</a>.
+                </small>
+            </div> -->
+
+        </div> <!-- /content -->
+    
+    </div> <!-- /wrapper -->
 </body>
 
 
