@@ -394,30 +394,17 @@
                 </small>
             </div> -->
 
-            <div style="text-align: left; padding: 20px 0; color: #999;">
+            <div style="text-align: left; padding: 60px 0 5px 0; color: #999;">
                 <small>
-                    Total <span id="visit-count" style="font-weight: 500;">-</span> visits since April 2026
+                    Total <span id="visit-count">-</span> visits since April 2026
                 </small>
                 <script>
-                var img = new Image();
-                img.onload = function() {
-                    var canvas = document.createElement('canvas');
-                    // use object tag instead
-                };
-                // Use object to load SVG, then extract text
-                var obj = document.createElement('object');
-                obj.data = 'https://hits.sh/ggghsl.github.io.svg?view=total&style=flat&label=%20&color=fafafa&labelColor=fafafa';
-                obj.type = 'image/svg+xml';
-                obj.style.display = 'none';
-                obj.onload = function() {
-                    try {
-                        var svgDoc = obj.contentDocument;
-                        var texts = svgDoc.querySelectorAll('text');
-                        var num = texts[texts.length - 1].textContent;
-                        document.getElementById('visit-count').textContent = num;
-                    } catch(e) {}
-                };
-                document.body.appendChild(obj);
+                fetch('https://api.counterapi.dev/v1/ggghsl-github-io/visits/up')
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        document.getElementById('visit-count').textContent = data.count;
+                    })
+                    .catch(function() {});
                 </script>
             </div>
 
