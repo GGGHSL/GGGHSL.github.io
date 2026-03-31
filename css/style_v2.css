@@ -43,6 +43,8 @@ img.banner-image {
     flex-grow: 1;
     flex-shrink: 0;
     width: 100px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 #sidebar {
