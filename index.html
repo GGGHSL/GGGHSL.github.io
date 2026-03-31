@@ -113,7 +113,7 @@
                 <h2><b>About Me</b></h2>
                 <div class="row">
                     <div class="col-sm-auto" style="padding-right: 10;">
-                        <img src="img/photo2026.jpg" alt="Gege Gao" style="width: 220px; border-radius: 8px;">
+                        <img src="img/photo2026.jpg" alt="Gege Gao" style="width: 225px; border-radius: 8px;">
                     </div>
                     <div class="col-sm-9">
                         <p>
@@ -181,10 +181,10 @@
                         </div>
                         <div class="publication_venue">Under Review, 2026</div>
                         <div class="publication_authors">
-                            <a href="https://tr.linkedin.com/in/merve-kocaba%C5%9F-69b4b6249">Merve Kocabaş</a>,
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a><sup>&dagger;</sup>,
-                            <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>,
-                            <a href="https://apchenstu.github.io/">Andreas Geiger</a>
+                            Merve Kocabaş,
+                            <span class="link-self">Gege Gao</span><sup>&dagger;</sup>,
+                            Bernhard Schölkopf,
+                            Andreas Geiger
                         </div>
                         <div class="publication_links">
                             <!-- <a href="https://arxiv.org/abs/2312.00093">[arXiv]</a> -->
@@ -211,9 +211,9 @@
                         </div>
                         <div class="publication_venue">Art Paper & Installation, Under Review, 2025</div>
                         <div class="publication_authors">
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a><sup>&dagger;</sup>,
-                            <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>,
-                            <a href="https://apchenstu.github.io/">Andreas Geiger</a>
+                            <span class="link-self">Gege Gao</span><sup>&dagger;</sup>,
+                            Bernhard Schölkopf,
+                            Andreas Geiger
                         </div>
                         <div class="publication_links">
                             <!-- <a href="https://arxiv.org/abs/2312.00093">[arXiv]</a> -->
@@ -241,11 +241,11 @@
                         </div>
                         <div class="publication_venue">CVPR 2024</div>
                         <div class="publication_authors">
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>,
-                            <a href="https://wyliu.com/">Weiyang Liu</a><sup>&dagger;</sup>,
-                            <a href="https://apchenstu.github.io/">Anpei Chen</a>,
-                            <a href="https://apchenstu.github.io/">Andreas Geiger</a>,
-                            <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>
+                            <span class="link-self">Gege Gao</span>,
+                            Weiyang Liu<sup>&dagger;</sup>,
+                            Anpei Chen,
+                            Andreas Geiger,
+                            Bernhard Schölkopf
                         </div>
                         <div class="publication_links">
                             <a href="https://arxiv.org/abs/2312.00093">[arXiv]</a>
@@ -258,8 +258,9 @@
                 <div class="publication_detail" id="GraphDreamer2024">
                     <div class="publication_abstract">
                         <b>Abstract:</b> As pretrained text-to-image diffusion models become increasingly powerful, recent efforts have been made to distill knowledge from these text-to-image pretrained models for optimizing a text-guided 3D model. Most of the existing methods generate a holistic 3D model from a plain text input. This can be problematic when the text describes a complex scene with multiple objects, because the vectorized text embeddings are inherently unable to capture a complex description with multiple entities and relationships. Holistic 3D modeling of the entire scene further prevents accurate grounding of text entities and concepts. To address this limitation, we propose GraphDreamer, a novel framework to generate compositional 3D scenes from scene graphs, where objects are represented as nodes and their interactions as edges. By exploiting node and edge information in scene graphs, our method makes better use of the pretrained text-to-image diffusion model and is able to fully disentangle different objects without image-level supervision. To facilitate modeling of object-wise relationships, we use signed distance fields as representation and impose a constraint to avoid inter-penetration of objects. To avoid manual scene graph creation, we design a text prompt for ChatGPT to generate scene graphs based on text inputs. We conduct both qualitative and quantitative experiments to validate the effectiveness of GraphDreamer in generating high-fidelity compositional 3D scenes with disentangled object entities.
-
-                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@Inproceedings{gao2024graphdreamer,
+                        
+                        <div style="margin-top: 12px;"><b>BibTeX:</b></div>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 2px;">@Inproceedings{gao2024graphdreamer,
   author = {Gao, Gege and Liu, Weiyang and Chen, Anpei and Geiger, Andreas and Schölkopf, Bernhard},
   title = {GraphDreamer: Compositional 3D Scene Synthesis from Scene Graphs},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
@@ -278,7 +279,7 @@
                         </div>
                         <div class="publication_venue">Technical Report, ArXiv, 2021</div>
                         <div class="publication_authors">
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>,
+                            <span class="link-self">Gege Gao</span>,
                             Huaibo Huang, Chaoyou Fu, Ran He
                         </div>
                         <div class="publication_links">
@@ -290,8 +291,8 @@
                     <div class="publication_abstract">
                         <b>Abstract:</b> Human face synthesis involves transferring knowledge about the identity and identity-dependent shape of a human face to target face images where the context (e.g., facial expressions, head poses, and other background factors) may change dramatically. Human faces are non-rigid, so facial expression leads to deformation of face shape, and head pose also affects the face observed in 2D images. A key challenge in face transfer is to match the face with unobserved new contexts, adapting the identity-dependent face shape (IDFS) to different poses and expressions accordingly. In this work, we find a way to provide prior knowledge for generative models to reason about the appropriate appearance of a human face in response to various expressions and poses. We propose a novel context-aware face transfer model, called CarTrans, that incorporates causal effects of contextual factors into face representation, and thus is able to be aware of the uncertainty of new contexts. We estimate the effect of facial expression and head pose in terms of counterfactuals by designing a controlled intervention trial, thus avoiding the need for dense multi-view observations to cover the pose-expression space well. Moreover, we propose a kernel regression-based encoder that eliminates the identity specificity of the target face when encoding contextual information from the target image. The resulting method shows impressive performance, allowing fine-grained control over face shape and appearance under various contextual conditions.
 
-                        <br/><b>BibTeX:</b>
-                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@article{gao2021causal,
+                        <div style="margin-top: 12px;"><b>BibTeX:</b></div>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 2px;">@article{gao2021causal,
   author = {Gao, Gege and Huang, Huaibo and Fu, Chaoyou and He, Ran},
   title = {Causal Representation Learning for Context-Aware Face Transfer},
   journal = {arXiv preprint arXiv:2110.01571},
@@ -308,7 +309,7 @@
                         </div>
                         <div class="publication_venue">CVPR 2021</div>
                         <div class="publication_authors">
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>,
+                            <span class="link-self">Gege Gao</span>,
                             Huaibo Huang, Chaoyou Fu, Zhaoyang Li, Ran He
                         </div>
                         <div class="publication_links">
@@ -321,8 +322,8 @@
                     <div class="publication_abstract">
                         <b>Abstract:</b> Improving the performance of face forgery detectors often requires more identity-swapped images of higher-quality. One core objective of identity swapping is to generate identity-discriminative faces that are distinct from the target while identical to the source. To this end, properly disentangling identity and identity-irrelevant information is critical and remains a challenging endeavor. In this work, we propose a novel information disentangling and swapping network, called InfoSwap, to extract the most expressive information for identity representation from a pre-trained face recognition model. The key insight of our method is to formulate the learning of disentangled representations as optimizing an information bottleneck trade-off, in terms of finding an optimal compression of the pre-trained latent features. Moreover, a novel identity contrastive loss is proposed for further disentanglement by requiring a proper distance between the generated identity and the target. While the most prior works have focused on using various loss functions to implicitly guide the learning of representations, we demonstrate that our model can provide explicit supervision for learning disentangled representations, achieving impressive performance in generating more identity-discriminative swapped faces.
                         
-                        <br/><b>BibTeX:</b>
-                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 4px;">@InProceedings{Gao_2021_CVPR,
+                        <div style="margin-top: 12px;"><b>BibTeX:</b></div>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 2px;">@InProceedings{Gao_2021_CVPR,
   author = {Gao, Gege and Huang, Huaibo and Fu, Chaoyou and Li, Zhaoyang and He, Ran},
   title = {Information Bottleneck Disentanglement for Identity Swapping},
   booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
