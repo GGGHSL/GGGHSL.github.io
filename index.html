@@ -42,10 +42,17 @@
                     <p>Personal Website</p>
                 </div>
 
-                <ul class="list-unstyled components">
-                     <li class="active" > <a href="javascript:void(0)" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">Home</a> </li>
-                     <li> <a href="javascript:void(0)" onclick="document.getElementById('research').scrollIntoView({behavior:'smooth'})">Research</a> </li>
+                <ul class="list-unstyled components" id="nav-items">
+                     <li class="active" > <a href="index.html#top" onclick="setActive(this)">Home</a> </li>
+                     <li> <a href="index.html#research" onclick="setActive(this)">Research</a> </li>
                 </ul>
+                <script>
+                function setActive(el) {
+                    var items = document.querySelectorAll('#nav-items li');
+                    items.forEach(function(li) { li.classList.remove('active'); });
+                    el.parentElement.classList.add('active');
+                }
+                </script>
                 
                 <ul id="links" class="list-unstyled">
                     <li><a class="mail">
@@ -110,9 +117,10 @@
             
             <br>
         
-            <div class="pt-4" id="research">
+            <a name="research"></a>
+            <div class="pt-4">
                 <h2><b>Research Projects</b></h2>
-
+                (&dagger; indicates project lead)
                 <script>
                 function toggleDetails(id) {
                     var el = document.getElementById(id);
@@ -123,7 +131,7 @@
 
                 <!-- <div class="year-divider"><h2>2025</h2></div> -->
 
-                <div class="publication_container" onclick="toggleDetails('TF2025');">
+                <div class="publication_container" onclick="toggleDetails('TF2026');">
                     <div class="publication_image"><img src="img/trajectory_forcing.svg"/></div>
                     <div class="publication_info">
                         <div class="publication_title">
@@ -132,7 +140,7 @@
                         <div class="publication_venue">Under Review, 2026</div>
                         <div class="publication_authors">
                             <a href="https://tr.linkedin.com/in/merve-kocaba%C5%9F-69b4b6249">Merve Kocabaş</a>,
-                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>,
+                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a><sup>&dagger;</sup>,
                             <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>,
                             <a href="https://apchenstu.github.io/">Andreas Geiger</a>
                         </div>
@@ -144,9 +152,38 @@
                         </div>
                     </div>
                 </div>
-                <div class="publication_detail" id="TF2025">
+                <div class="publication_detail" id="TF2026">
                     <div class="publication_abstract">
                         <b>Abstract:</b> Diffusion and flow-based generative models typically treat generation as an opaque mapping from noise to image. Although recent methods have begun to exploit trajectory structure for improved quality, intermediate states remain uninterpretable and inaccessible to users. We propose Trajectory Forcing (TF), a framework that elevates the generative trajectory from a hidden computational process to an explicit, controllable object. Generation is organized as a sequence of semantically structured stages, progressing from global layout through object-level parts to fine-grained detail, where every intermediate state can be decoded, inspected, and edited. We construct coarse-to-fine teacher hierarchies via unsupervised clustering in pretrained, semantically meaningful representation spaces (e.g., DINOv2), and train a hierarchy-conditioned model using one-step flow matching at each level. We further introduce trajectory-aware evaluation measures that quantify structural consistency and local controllability beyond standard metrics such as FID. Experiments show that TF achieves competitive sample quality while producing structurally coherent, decodable intermediate states that support localized editing at each semantic level. By shifting the modeling focus from the final model outputs to generative dynamics, Trajectory Forcing enables controllable, trajectory-aware image synthesis.
+                    </div>
+                    <div class="publication_links">
+                    </div>
+                </div>
+                
+
+                <div class="publication_container" onclick="toggleDetails('DecArt2025');">
+                    <div class="publication_image"><img src="img/decart.jpg"/></div>
+                    <div class="publication_info">
+                        <div class="publication_title">
+                            Echoes of the Prior: Visualizing the Decay of Machine Memory in 3D Reconstruction
+                        </div>
+                        <div class="publication_venue">Under Review, 2025</div>
+                        <div class="publication_authors">
+                            <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a><sup>&dagger;</sup>,
+                            <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>,
+                            <a href="https://apchenstu.github.io/">Andreas Geiger</a>
+                        </div>
+                        <div class="publication_links">
+                            <!-- <a href="https://arxiv.org/abs/2312.00093">[arXiv]</a> -->
+                            <a href="https://decart-4d.github.io/">[Website]</a>
+                            <a href="src/pubs/DecArt.pdf">[Paper]</a>
+                            <a>[Code: Coming Soon]</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="publication_detail" id="DecArt2025">
+                    <div class="publication_abstract">
+                        <b>Abstract:</b> Memory is not merely the storage of data; it is the scaffolding of reality. When biological memory fades, the world does not simply turn black; it regresses into an unrecognizable chaos. Echoes of the Prior is an interactive installation that attempts to visualize this subjective phenomenology of forgetting. By inducing controlled synaptic decay within a Feed-Forward 3D Reconstruction model, we simulate the erosion of the brain's predictive priors. We position the Neural Network not as a tool for engineering, but as a cognitive proxy - a silicon brain whose structural degeneration offers us a glimpse into the disorienting, poetic, and terrifying experience of losing one's grip on the world. Ultimately, we offer this framework as a catalyst, inviting the wider community to explore the uncharted potential of neuromorphic aesthetics in visualizing the fragility of intelligence.
                     </div>
                     <div class="publication_links">
                     </div>
@@ -163,7 +200,7 @@
                         <div class="publication_venue">CVPR 2024</div>
                         <div class="publication_authors">
                             <a href="https://ggghsl.github.io/" class="link-self">Gege Gao</a>,
-                            <a href="https://wyliu.com/">Weiyang Liu</a>,
+                            <a href="https://wyliu.com/">Weiyang Liu</a><sup>&dagger;</sup>,
                             <a href="https://apchenstu.github.io/">Anpei Chen</a>,
                             <a href="https://apchenstu.github.io/">Andreas Geiger</a>,
                             <a href="https://is.mpg.de/~bs">Bernhard Schölkopf</a>
