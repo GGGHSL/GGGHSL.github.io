@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>a small garden</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #8DC579;
+            --green-deep: #6fae5a;
+            --cream: #fdf9f0;
+            --ink: #3a3a3a;
+            --ink-soft: #6a6a6a;
+            --whisper: #b5b5b5;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: Roboto, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 18% 12%, #eaf5e3 0%, transparent 50%),
+                radial-gradient(circle at 82% 78%, #f8efd9 0%, transparent 55%),
+                radial-gradient(circle at 50% 50%, #fff 0%, transparent 70%),
+                #fafafa;
+            overflow-x: hidden;
+        }
+
+        /* drifting background ornaments */
+        .drift {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .drift span {
+            position: absolute;
+            color: var(--green);
+            opacity: 0.18;
+            font-size: 18px;
+            animation: drift-up linear infinite;
+            user-select: none;
+        }
+        .drift span:nth-child(1) { left: 8%;  font-size: 14px; animation-duration: 38s; animation-delay: -2s; }
+        .drift span:nth-child(2) { left: 22%; font-size: 22px; animation-duration: 52s; animation-delay: -18s; color:#d9b06a; }
+        .drift span:nth-child(3) { left: 38%; font-size: 16px; animation-duration: 44s; animation-delay: -30s; }
+        .drift span:nth-child(4) { left: 55%; font-size: 20px; animation-duration: 60s; animation-delay: -10s; color:#d49aa8; }
+        .drift span:nth-child(5) { left: 71%; font-size: 14px; animation-duration: 46s; animation-delay: -25s; }
+        .drift span:nth-child(6) { left: 86%; font-size: 18px; animation-duration: 50s; animation-delay: -40s; color:#d9b06a; }
+        .drift span:nth-child(7) { left: 14%; font-size: 12px; animation-duration: 42s; animation-delay: -36s; }
+        .drift span:nth-child(8) { left: 64%; font-size: 16px; animation-duration: 56s; animation-delay: -5s; }
+
+        @keyframes drift-up {
+            0%   { transform: translateY(110vh) rotate(0deg);   opacity: 0; }
+            10%  { opacity: 0.22; }
+            90%  { opacity: 0.22; }
+            100% { transform: translateY(-15vh) rotate(360deg); opacity: 0; }
+        }
+
+        .garden {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 64px 32px 200px;
+        }
+
+        .garden-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 48px;
+        }
+
+        .back-link {
+            color: var(--green-deep);
+            text-decoration: none;
+            font-family: 'Caveat', cursive;
+            font-size: 1.4em;
+            transition: transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: none;
+            color: var(--green);
+            transform: translateX(-4px);
+        }
+
+        .header-tag {
+            font-family: 'Caveat', cursive;
+            color: var(--whisper);
+            font-size: 1.2em;
+        }
+
+        h1.hello {
+            font-family: 'Caveat', cursive;
+            font-weight: 600;
+            font-size: 4.2em;
+            margin: 0;
+            color: var(--ink);
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+        h1.hello .flourish {
+            color: var(--green);
+            font-size: 0.7em;
+            display: inline-block;
+            transform: translateY(-0.25em) rotate(-10deg);
+            margin-left: 6px;
+            animation: sway 6s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+        @keyframes sway {
+            0%, 100% { transform: translateY(-0.25em) rotate(-10deg); }
+            50%      { transform: translateY(-0.25em) rotate(8deg); }
+        }
+
+        .subtitle {
+            font-family: 'Caveat', cursive;
+            color: var(--ink-soft);
+            font-size: 1.6em;
+            margin: 12px 0 64px;
+            line-height: 1.3;
+        }
+        .subtitle .ink-mark { color: var(--green-deep); }
+
+        section.bed {
+            margin-bottom: 64px;
+            position: relative;
+        }
+
+        section.bed .section-title {
+            display: flex;
+            align-items: baseline;
+            gap: 14px;
+            margin-bottom: 28px;
+            border-bottom: 1px dashed #d9d9d9;
+            padding-bottom: 10px;
+        }
+        section.bed .section-title h2 {
+            font-family: 'Caveat', cursive;
+            font-weight: 600;
+            font-size: 2em;
+            margin: 0;
+            color: var(--ink);
+        }
+        section.bed .section-title .ornament {
+            color: var(--green);
+            font-size: 1.4em;
+            transition: transform 0.4s ease;
+        }
+        section.bed:hover .section-title .ornament {
+            transform: rotate(15deg) scale(1.1);
+        }
+        section.bed .section-title .label {
+            margin-left: auto;
+            font-family: 'Caveat', cursive;
+            color: var(--whisper);
+            font-size: 1.1em;
+        }
+
+        .entry {
+            padding: 14px 16px;
+            border-radius: 6px;
+            margin-bottom: 18px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: default;
+        }
+        .entry:hover {
+            background: rgba(141, 197, 121, 0.07);
+            transform: translateX(4px);
+        }
+        .entry .entry-date {
+            font-family: 'Caveat', cursive;
+            color: var(--whisper);
+            font-size: 1.05em;
+            margin-bottom: 2px;
+        }
+        .entry h3 {
+            font-weight: 400;
+            font-size: 1.1em;
+            margin: 0 0 8px;
+            color: var(--ink);
+        }
+        .entry p {
+            color: var(--ink-soft);
+            font-size: 0.95em;
+            margin: 0;
+            line-height: 1.7;
+        }
+        .entry .tag {
+            display: inline-block;
+            font-size: 0.72em;
+            padding: 2px 8px;
+            border-radius: 10px;
+            background: rgba(141, 197, 121, 0.18);
+            color: var(--green-deep);
+            margin-left: 6px;
+            vertical-align: middle;
+            letter-spacing: 0.04em;
+        }
+
+        /* the waterable flower easter egg */
+        .water-spot {
+            margin: 80px 0 40px;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            color: var(--ink-soft);
+            font-size: 1.3em;
+        }
+        .flower-btn {
+            display: inline-block;
+            background: none;
+            border: none;
+            font-size: 2.4em;
+            cursor: pointer;
+            padding: 8px;
+            transition: transform 0.2s ease;
+            color: var(--green);
+            line-height: 1;
+        }
+        .flower-btn:hover { transform: scale(1.15) rotate(-6deg); }
+        .flower-btn:active { transform: scale(0.9); }
+        .water-count {
+            display: block;
+            margin-top: 6px;
+            color: var(--whisper);
+            font-size: 0.9em;
+        }
+
+        .footer-note {
+            margin-top: 80px;
+            color: var(--whisper);
+            font-family: 'Caveat', cursive;
+            font-size: 1.3em;
+            text-align: center;
+        }
+
+        /* a snail wandering across the bottom */
+        .snail {
+            position: fixed;
+            bottom: 12px;
+            left: -60px;
+            font-size: 26px;
+            opacity: 0.55;
+            z-index: 0;
+            animation: crawl 90s linear infinite;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes crawl {
+            0%   { left: -60px;  transform: translateY(0); }
+            48%  { transform: translateY(-3px); }
+            50%  { transform: translateY(0); }
+            100% { left: calc(100vw + 40px); transform: translateY(0); }
+        }
+
+        @media (max-width: 520px) {
+            h1.hello { font-size: 3em; }
+            .subtitle { font-size: 1.3em; }
+            .garden { padding: 40px 22px 160px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .drift span, .snail, h1.hello .flourish { animation: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="drift" aria-hidden="true">
+        <span>✿</span><span>❀</span><span>✦</span><span>❁</span>
+        <span>✿</span><span>❀</span><span>✦</span><span>❁</span>
+    </div>
+
+    <div class="garden">
+        <div class="garden-header">
+            <a href="index.html" class="back-link">&larr; back through the door</a>
+            <span class="header-tag">a small garden &nbsp;✿</span>
+        </div>
+
+        <h1 class="hello">Hello there<span class="flourish">✿</span></h1>
+        <p class="subtitle">
+            You found the side door. <br/>
+            This is where I keep <span class="ink-mark">things that don't fit on a CV</span> &mdash; <br/>
+            half-thoughts, small joys, weird drafts.
+        </p>
+
+        <section class="bed">
+            <div class="section-title">
+                <span class="ornament">✿</span>
+                <h2>Now growing</h2>
+                <span class="label">in progress</span>
+            </div>
+            <div class="entry">
+                <div class="entry-date">spring, sometime</div>
+                <h3>A seed I planted recently <span class="tag">draft</span></h3>
+                <p>
+                    (Tell the story of something you're slowly figuring out.
+                    A research instinct that hasn't crystallized. A side project.
+                    A question you keep returning to.)
+                </p>
+            </div>
+        </section>
+
+        <section class="bed">
+            <div class="section-title">
+                <span class="ornament">❀</span>
+                <h2>In bloom</h2>
+                <span class="label">finished things i'm fond of</span>
+            </div>
+            <div class="entry">
+                <div class="entry-date">a good day</div>
+                <h3>Something I made and liked</h3>
+                <p>
+                    (A talk, a small tool, a piece of writing, a photograph &mdash;
+                    anything you want to leave out for visitors to find.)
+                </p>
+            </div>
+        </section>
+
+        <section class="bed">
+            <div class="section-title">
+                <span class="ornament">❁</span>
+                <h2>From the compost</h2>
+                <span class="label">scraps &amp; half-ideas</span>
+            </div>
+            <div class="entry">
+                <div class="entry-date">whenever</div>
+                <h3>A thought that didn't go anywhere &mdash; yet</h3>
+                <p>
+                    (The compost pile: unfinished ideas, abandoned hypotheses,
+                    things you weren't sure how to phrase. They make good soil.)
+                </p>
+            </div>
+        </section>
+
+        <div class="water-spot">
+            <button class="flower-btn" id="water" aria-label="water the flower" title="give it a little water">✿</button>
+            <span class="water-count" id="water-count">tap to water</span>
+        </div>
+
+        <div class="footer-note">
+            &mdash; the door is always open &mdash;
+        </div>
+    </div>
+
+    <span class="snail" aria-hidden="true">🐌</span>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('water');
+            var label = document.getElementById('water-count');
+            var n = parseInt(localStorage.getItem('garden_water') || '0', 10);
+            var phrases = [
+                'tap to water',
+                'one drop',
+                'two drops',
+                'it perks up a little',
+                'growing taller',
+                'a leaf unfurls',
+                'a bud appears',
+                'something is humming',
+                'a butterfly drifts by',
+                'it remembers you'
+            ];
+            function render() {
+                if (n === 0) { label.textContent = phrases[0]; return; }
+                var i = Math.min(n, phrases.length - 1);
+                label.textContent = phrases[i] + ' · ' + n;
+            }
+            render();
+            btn.addEventListener('click', function () {
+                n += 1;
+                localStorage.setItem('garden_water', String(n));
+                render();
+                btn.animate(
+                    [{ transform: 'scale(1.25) rotate(-8deg)' }, { transform: 'scale(1) rotate(0deg)' }],
+                    { duration: 320, easing: 'ease-out' }
+                );
+            });
+        })();
+    </script>
+</body>
+
+</html>
