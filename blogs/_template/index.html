@@ -53,6 +53,26 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/cosmos.css">
+
+    <!-- math (KaTeX) — write $...$ for inline, $$...$$ for display -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$',  right: '$',  display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -147,6 +167,17 @@ function transmit(payload) {
                 We are a way for the universe to know itself.&rdquo;</p>
             </blockquote>
 
+            <h3>maths</h3>
+            <p>
+                Inline math like $E = mc^2$ flows with the text.
+                Display math gets centered on its own line:
+            </p>
+            $$ S = -k_B \sum_i p_i \ln p_i $$
+            <p>
+                Write LaTeX directly &mdash; <code>$...$</code> for inline,
+                <code>$$...$$</code> for display. Rendered by KaTeX.
+            </p>
+
             <hr/>
 
             <p>
@@ -201,6 +232,17 @@ function transmit(payload) {
                 <p>&ldquo;宇宙就在我们身体里。我们由星辰构成。
                 我们是宇宙认识自己的一种方式。&rdquo;</p>
             </blockquote>
+
+            <h3>公式</h3>
+            <p>
+                行内公式像 $E = mc^2$ 一样跟文字一起流动。
+                块级公式则单独居中成行:
+            </p>
+            $$ S = -k_B \sum_i p_i \ln p_i $$
+            <p>
+                直接写 LaTeX 即可 &mdash; <code>$...$</code> 写行内,
+                <code>$$...$$</code> 写块级。由 KaTeX 渲染。
+            </p>
 
             <hr/>
 

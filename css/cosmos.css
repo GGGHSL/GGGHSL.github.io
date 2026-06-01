@@ -519,6 +519,15 @@ h1.post-title {
     letter-spacing: 0.06em;
 }
 
+/* --- math (KaTeX) — inherits .post-body color (light on dark) --- */
+.post-body .katex { color: inherit; }
+.post-body .katex-display {
+    margin: 1.6em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 4px 0;
+}
+
 /* ============================================================
    bilingual toggle  (CN / EN)
    set html.lang-en or html.lang-zh on <html> to control visibility;

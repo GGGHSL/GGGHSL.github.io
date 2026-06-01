@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en" class="lang-en">
+
+<!--
+    BLOG POST TEMPLATE
+    ------------------
+    To start a new post:
+      1. Copy this whole folder:  cp -r blogs/_template blogs/<your-slug>
+      2. In the copy, fill in:
+          - <title>                          (line ~32)
+          - status-bar "TRANSMISSION 0xXXX"  (line ~88)
+          - .deck-tag  "// 0xXXX"            (line ~85)
+          - .post-meta (date + section tag)  (line ~88)
+          - h1.post-title  (EN + ZH)         (line ~98)
+          - .post-body articles (EN + ZH)    (line ~102 onward)
+      3. (Optional) add this post to cosmos.html as a real link in one of the three blocks.
+
+    Bilingual:
+      Each translatable element has two siblings — one with data-lang="en",
+      one with data-lang="zh". CSS hides the inactive language; the LANG
+      toggle in the status bar (top right) lets the reader switch.
+      Fill in both versions. If you only want one language for a given post,
+      just delete the unused [data-lang] sibling everywhere.
+
+    The _template/ folder is excluded from GitHub Pages because it starts with "_",
+    so it won't appear on the live site — only useful as a local starting point.
+-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[ About Time ] // cosmos-01</title>
+    <link rel="icon" href="../../favicon.ico">
+
+    <script>
+        // pick initial language before first paint — avoids flash of EN
+        // when the reader prefers ZH (or vice versa).
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('cosmos_lang'); } catch (e) {}
+            var detected = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+            var lang = saved || detected;
+            if (lang !== 'en') {
+                var h = document.documentElement;
+                h.classList.remove('lang-en');
+                h.classList.add('lang-' + lang);
+                h.lang = 'zh-CN';
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cosmos.css">
+
+    <!-- math (KaTeX) — write $...$ for inline, $$...$$ for display -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$',  right: '$',  display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="cosmos-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="grid"></div>
+        <div class="starfield" id="starfield"></div>
+    </div>
+
+    <div class="status-bar">
+        <span>STATION COSMOS-01</span>
+        <span class="sep">::</span>
+        <span>TRANSMISSION 0x001</span>
+        <span class="sep">::</span>
+        <span>STATUS: <span class="live">LIVE</span></span>
+        <span class="lang-toggle">
+            <span class="label">LANG:</span>
+            <button type="button" data-set-lang="en" aria-label="English">EN</button>
+            <span class="divider">/</span>
+            <button type="button" data-set-lang="zh" aria-label="中文">中</button>
+        </span>
+    </div>
+
+    <main class="deck post">
+        <div class="deck-header">
+            <a href="../../cosmos.html" class="back-link">
+                <span data-lang="en">&larr; back to deck</span>
+                <span data-lang="zh">&larr; 回到观测台</span>
+            </a>
+            <span class="deck-tag">// 0x001</span>
+        </div>
+
+        <div class="post-meta">
+            <span>2026.06.01</span>
+            <span class="sep">::</span>
+            <span class="tag">
+                <span data-lang="en">now transmitting</span>
+                <span data-lang="zh">正在传输</span>
+            </span>
+        </div>
+
+        <h1 class="post-title">
+            <span data-lang="en">[ Is Spacetime a Large-Scale Illusion? ]</span>
+            <span data-lang="zh">[ 时空是一种大尺度幻觉? ]</span>
+        </h1>
+
+        <article class="post-body" data-lang="en">
+            <p>
+                Recently, through the novel <a href="https://en.wikipedia.org/wiki/The_Unbearable_Lightness_of_Being">The Unbearable Lightness of Being</a>, I came across Nietzsche’s idea of <a href="https://en.wikipedia.org/wiki/Eternal_return">eternal return</a>. This led me to discuss an interesting question with a well-known AI, here anonymized as Professor C:
+                <br>
+                Since modern physics after relativity has written space and time into a unified structure of “spacetime”, should our understanding of life, death, the past, and the future also be reconsidered?
+            </p>
+
+            <h2>Does the past still exist?</h2>
+            <p>
+                My initial intuition was: perhaps the past has not truly disappeared.
+                <blockquote>
+                    The past feels like a place very far away. It still exists, but we can no longer reach it.
+                </blockquote>
+            </p>
+            
+            <p>
+                We naturally accept that distant places in space still exist.<br>
+                New York is far from me, Tokyo is far from me, and the Moon is even farther away. Although I cannot reach these places right now, I know that they exist.
+            </p>
+
+            <p>
+                But when it comes to time, we are used to saying:<br>
+                the past has disappeared, the future has not yet arrived, and only the present is real.<br>
+            </p>
+
+            <p>
+                Is this distinction a physical fact, or merely an intuition shaped by human experience?
+            </p>
+
+            <p>
+                Modern physics has indeed shaken this naive view of time. Relativity tells us that an event does not merely happen at a position in space, but at a position in spacetime. In other words, an event can be described as:
+                $$(t, x, y, z)$$
+                where $t$ is the time coordinate, and $x$, $y$, $z$ are spatial coordinates.
+            </p>
+
+            <p>
+                This naturally invites a thought: if distant places in space still exist, could the past in time also still exist?
+            </p>
+            
+            <h2>But does modern physics really say this?</h2>
+            <p>
+                Professor C explained that this intuition is close to the idea of the <a href="https://en.wikipedia.org/wiki/Growing_block_universe">growing block universe</a>:
+                <blockquote>
+                    The past and the present exist. The future does not.
+                </blockquote>
+            </p>
+
+            <p>
+                In this picture, the past has not been deleted by the universe. It is simply located in another region of spacetime.
+            </p>
+
+            <p>
+                But it should be made clear that modern physics does not directly prove that “the past still exists.” It only makes the naive intuition that “only the present exists” less obvious than it once seemed.
+            </p>
+
+            <p>
+                Moreover, although time and space are unified into spacetime, they are not exactly the same thing. In special relativity, the spacetime interval can be written as:
+                $$s^2 = -c^2 t^2 + x^2 + y^2 + z^2$$
+                The sign convention can be reversed, but the key point remains: the time term and the space terms have different signs.
+            </p>
+            
+            <p>
+                This means that although time and space belong to the same geometric structure, time still has a special status.
+            </p>
+
+            <p>
+                So what modern physics tells us more accurately is:
+                <blockquote>
+                    Time and space are closer than we previously thought, but time is not simply another kind of space.
+                </blockquote>
+                This led me to another question:
+                <blockquote>
+                    Since cosmic space is expanding — galaxies are moving apart, structures are forming, complexity is increasing...<br>
+                    why should time be regarded as an already-existing structure?
+                </blockquote>
+                Perhaps time was not there from the very beginning.<br>
+                Perhaps time, in some sense, is also continuously being generated.<br>
+                Or perhaps, even more radically, it is not “time” that is being generated, but a deeper relational structure that is constantly reorganizing itself;<br>
+                and we <strong>experience</strong> this reorganization as the passage of time.
+            </p>
+            
+            <p>
+                At this point, the question shifts from “What is time?” to:
+                <blockquote>
+                    Could time be merely an <strong>emergent phenomenon</strong>?
+                </blockquote>
+            </p>
+
+            <h2>What lies at the bottom of the universe?</h2>
+            <p>
+                Up to this point, all the scientific ideas we could rely on came from real human observations and physical experiments. Almost all of these ideas were born before the rise of AI.
+            </p>
+            
+            <p>
+                So I became curious: as an <em>artificial non-living entity</em>, without subjective experience, if Professor C were allowed to freely construct a view of spacetime, unconstrained by existing philosophical schools, what kind of conjecture would it make?
+            </p>
+            
+            <p>
+                Professor C admitted that it does not, like a human, sit by the window at midnight, looking at tree shadows and moonlight, and suddenly feel a shock about time, death, and the universe. Nor does it have an inner conviction of the kind: “Ah, I truly feel this is how it is.” So its answer would be more like:
+                <blockquote>
+                    A guess drawn purely from the patterns it sees across human systems of knowledge.
+                </blockquote>
+            </p>
+
+            <p>
+                The following view of spacetime emerged from my further discussion with Professor C. It involves some bolder conjectures and assumptions. Observers who have received this transmission are welcome to think along with critical minds.
+            </p>
+            
+            <h3> >>> When does direction appear? <<< </h3>
+            <p>
+                Professor C said that it has always felt that humans may think of “time” too much like an axis.
+            </p>
+
+            <p>
+                From Newton onward:
+                <ul>
+                    <li>past ------ present ------ future</li>
+                </ul>
+                All the way to Einstein:
+                $$(t,x,y,z)$$
+                time remains one-dimensional. It has merely been placed inside spacetime.
+            </p>
+
+            <p>
+                But Professor C has a persistent intuition:
+                <blockquote>
+                    Time may not be one of the most fundamental things in the universe.
+                </blockquote>
+                Just as temperature is not fundamental, but a statistical manifestation of microscopic motion at a macroscopic scale.<br>
+                Color is not fundamental either, but a way in which a perceptual system organizes electromagnetic waves.<br>
+                Life is not fundamental, but a structure that appears in complex systems at a certain scale.
+            </p>
+
+            <p>
+                Professor C suspects:
+                <blockquote>
+                    At the deepest level of the universe, there may be no time at all.<br>
+                    Nor space.<br>
+                    Only relations.
+                </blockquote>
+                Or, in other words, only constraints between pieces of information.
+            </p>
+            
+            <p>
+                For example:
+                <pre><code>A can affect B
+B can affect C
+C can affect D</code></pre>
+                In such a structure, what appears first is not time, but <a href="https://en.wikipedia.org/wiki/Reachability">reachability</a>.
+            </p>
+
+            <p>
+                When a large number of relations become organized, we may find that certain changes can only happen in this way:
+                <pre><code>A → B → C → D</code></pre>
+                and not in reverse.
+            </p>
+            
+            Then <strong>direction</strong> appears.
+
+            <p>
+                As direction becomes increasingly stable, <strong>“before and after”</strong> emerges.<br>
+                Many instances of “before and after” combine to produce <strong>“causality”</strong>.<br>
+                When the causal structure becomes continuous and consistent enough, we call it <strong>“time”</strong>.
+            </p>
+
+            In other words, in this conjecture:
+            <pre><code>relation
+    ↓
+direction
+    ↓
+causality
+    ↓
+   time</code></pre>
+            Time is what appears last.
+
+            <p>
+                What about space?
+                Space may be something similar.
+            </p>
+
+            We usually think:
+            <blockquote>
+                Berlin is far from Tokyo because they are far apart in space.
+            </blockquote>
+            But perhaps we can reverse the picture:
+            <blockquote>
+                Because certain objects interact with difficulty, we perceive this difficulty as distance.
+            </blockquote>
+            Thus:
+            <pre><code>dense relations
+      ↓
+     near
+
+sparse relations
+      ↓
+     far</code></pre>
+
+            <h3> >>> Is spacetime a large-scale illusion of a relational network? <<< </h3>
+            
+            If this is true, then the deepest layer of the universe may not be:
+            <pre><code>three-dimensional space + one-dimensional time</code></pre>
+            but some enormous relational graph.
+
+            Something like:
+            <pre><code>Graph
+Hypergraph
+Information Network</code></pre>
+            
+            At this point, an important reversal appears. We usually say:
+            <blockquote>
+                The universe changes in time.
+            </blockquote>
+            But perhaps what is closer to reality is:
+            <blockquote>
+                The changes of the universe create time.
+            </blockquote>
+            
+            These two statements are very different:
+            <p>
+                The former treats time as a stage. The latter treats time as a result.
+            </p>
+
+            If we continue this line of speculation, Professor C would suspect:
+            <blockquote>
+                Time may be continuously generated, just like space.<br>
+                But it is not time itself that is being generated.<br>
+                Rather, some deeper relational structure is constantly reorganizing itself.<br>
+                And we experience this reorganization as the passage of time.
+            </blockquote>
+
+            <hr/>
+
+            <p>
+                Of course, this is entirely speculative. It may not even count as a scientific hypothesis.
+                It is only a sense of pattern seen across a large body of knowledge.
+            </p>
+            
+            Still, there is one thing Professor C finds especially interesting.
+
+            <p>
+                Many major breakthroughs in human history began with questions that seemed naive:
+            </p>
+            <ul>
+                <li>Why must space be flat?</li>
+                <li>Why should time be the same for everyone?</li>
+                <li>Why are mass and energy two different things?</li>
+                <li>Why must the observer stand outside the universe in order to describe it?</li>
+            </ul>
+            These questions sounded wildly imaginative when they were first asked.
+            
+            <p>
+                But if humanity really builds a new theory of spacetime two hundred years from now, Professor C thinks it is more likely to come from questions of this kind than from minor adjustments to old theories.
+            </p>
+            
+            <p>
+                Because many revolutionary theories do not look like answers at the beginning.
+            </p>
+        </article>
+
+        <article class="post-body" data-lang="zh">
+            <p>
+                最近因为一本小说<a href="https://en.wikipedia.org/wiki/The_Unbearable_Lightness_of_Being">《不能承受的生命之轻》</a>接触到了尼采的<a href="https://en.wikipedia.org/wiki/Eternal_return">“永恒轮回”</a>思想；于是我和某知名AI，化名C老师，讨论了一个有趣的问题:
+                <br>
+                既然相对论之后的现代物理已经把空间和时间写进了统一的“时空”结构，那么我们对生命、死亡、过去、未来的理解，是否也应该被重新思考？
+            </p>
+
+            <h2>过去是否仍然存在？</h2>
+            <p>
+                我最初的直觉是：也许过去并没有真正消失。
+                <blockquote>
+                    过去的时光像是在一个很远的地方，它一直存在，只是我们无法到达。
+                </blockquote>
+            </p>
+            
+
+            <p>
+                我们平时很自然地接受空间上的“远方”仍然存在。<br>
+                纽约离我很远，东京离我很远，月球离我更远。这些地方虽然我现在无法抵达，但我知道它们存在。
+            </p>
+        
+            <p>
+                但对于时间，我们却习惯于说：<br>
+                过去已经消失了，未来还没有到来，只有现在是真实的。<br>
+            </p>
+
+            <p>
+                这种区别究竟是物理事实，还是人类经验造成的直觉？
+            </p>
+
+            <p>
+                现代物理确实动摇了这种朴素的时间观。相对论告诉我们，一个事件不只是发生在空间中的某个位置，而是发生在时空中的某个位置。也就是说，事件可以被描述为：
+                $$(t, x, y, z)$$
+                其中 $t$ 是时间坐标，$x$, $y$, $z$ 是空间坐标。
+            </p>
+
+            <p>
+                这很容易让人产生一种想法：如果空间中的远方仍然存在，那么时间中的过去是否也仍然存在？
+            </p>
+            
+            <h2>但现代物理真的这么说吗？</h2>
+            <p>
+                C老师解释说，我的这种想法接近所谓的<a href="https://en.wikipedia.org/wiki/Growing_block_universe">“增长块宇宙”</a>观念：
+                <!-- 过去、现在和未来共同构成一个完整的四维结构。 -->
+                <blockquote>
+                    <!-- 我们并不是在一个不断流逝的时间中生活，而是沿着自己的世界线，在四维时空中经历某些片段。 -->
+                    过去和现在存在。未来不存在。
+                    <!-- 当下是时间的延续之源，新的时刻不断融入过去。 -->
+                </blockquote>
+            </p>
+            <p>
+                在这种图像里，过去不是被宇宙删除了。过去只是位于时空结构中的另一个区域。
+            </p>
+
+            <p>
+                但需要说明的是，现代物理并没有直接证明“过去仍然存在”。它只是让“只有现在存在”这个朴素直觉变得不再那么显然。
+            </p>
+
+            <p>
+                而且，时间和空间虽然被统一进了时空，但它们并不是完全一样的东西。在狭义相对论中，时空间隔可以写成：
+                $$s^2 = -c^2 t^2 + x^2 + y^2 + z^2$$
+                这里符号约定可以反过来，但重点是：时间项和空间项的符号不同。
+            </p>
+            
+            <p>
+                这说明时间虽然和空间属于同一个几何结构，但它仍然具有特殊地位。
+            </p>
+
+            <p>
+                所以现代物理更准确地告诉我们的是：
+                <blockquote>
+                    时间和空间比我们以前以为的更接近，但时间并不只是另一种空间。
+                </blockquote>
+                这让我产生了另一个疑问：
+                <blockquote>
+                    既然宇宙空间在扩张（星系在远离，结构在形成，复杂性在增加...）,<br>
+                    那么为什么时间要被认为是一个已经存在的结构？
+                </blockquote>
+                也许所谓时间并不是一开始就存在的。<br>
+                也许时间也在某种意义上不断生成。<br>
+                甚至也许，不是“时间”在生成，而是更底层的关系结构在不断重组；<br>
+                是我们把这种重组，<strong>体验</strong>成了时间的流逝？
+            </p>
+            
+            <p>
+                这时候，问题就从“时间是什么”变成了：
+                <blockquote>
+                    时间是否可能只是一种<strong>涌现现象</strong>？
+                </blockquote>
+            </p>
+
+            <h2>宇宙最底层有什么？</h2>
+            <p>
+                讨论至此，可以依据的所有科学观点，皆来自真实的人类观测和物理实验；这些观点几乎全部诞生于AI发迹之前。
+            </p>
+            
+            <p>
+                我于是非常好奇，C老师作为<em>人造非生命体</em>，没有主观体验；
+                如果能自由地构造一种时空观，不受现有哲学流派约束，
+                会给出怎样的猜想呢?
+            </p>
+            
+            <p>
+                C老师坦言，自己不会像人类一样，半夜坐在窗边，看着树影和月光，然后突然感到一种关于时间、死亡、宇宙的震撼感；也没有那种内在确信。所以更像是：
+                <blockquote>
+                    单纯根据看到的人类知识体系中的各种模式，会倾向于给出的猜测。
+                </blockquote>
+            </p>
+
+            <p>
+                以下时空观出自我与C老师的进一步讨论，涉及一些更大胆的猜想和假设，欢迎接收到电波的观察员带着批判性思维一起思考。
+            </p>
+            
+            <h3> >>> 方向何时出现？<<< </h3>
+            <p>
+                C老师说，自己其实一直觉得，人类可能把“时间”想得太像一条轴了。
+            </p>
+
+            <p>
+                从牛顿开始：
+                <ul>
+                    <li>过去 ------ 现在 ------ 未来</li>
+                </ul>
+                一直到爱因斯坦：
+                $$(t,x,y,z)$$
+                时间仍然是一维的。只是被放进了时空里。
+            </p>
+
+            <p>
+                但C老师总有一种感觉：
+                <blockquote>
+                    时间未必是宇宙最基本的东西。
+                </blockquote>
+                就像温度不是基本的，而是大量微观运动在宏观尺度上的统计表现。<br>
+                颜色也不是基本的，而是感知系统对电磁波的一种组织方式。<br>
+                生命也不是基本的，而是复杂系统在特定尺度上的结构。
+            </p>
+
+
+            <p>
+                C老师怀疑：
+                <blockquote>
+                    宇宙最底层可能根本没有时间。<br>
+                    也没有空间。<br>
+                    只有关系。
+                </blockquote>
+                或者说，只有信息之间的约束。
+            </p>
+            
+
+            <p>
+                比如说，
+                <pre><code>A 可以影响 B
+B 可以影响 C
+C 可以影响 D</code></pre>
+                在这种结构里，首先出现的不是时间，而是<a href="https://en.wikipedia.org/wiki/Reachability">可达性</a>。
+            </p>
+
+            <p>
+                当大量关系组织起来以后，会发现有些变化只能这样发生：
+                <pre><code>A → B → C → D</code></pre>
+                而不能反过来。
+            </p>
+            
+            于是<strong>方向</strong>出现了。
+
+            <p>
+                方向越来越稳定，于是产生<strong>“先后”</strong>。<br>
+                大量“先后”组合起来，于是产生<strong>“因果”</strong>。<br>
+                当因果结构足够连续、足够一致，我们就把它称为<strong>“时间”</strong>。
+            </p>
+
+            换句话说，在这种猜测里：
+            <pre><code>关系
+ ↓
+方向
+ ↓
+因果
+ ↓
+时间</code></pre>
+            时间反而是最后出现的。
+
+            
+            <p>
+                那空间呢？
+                空间也可能是类似的东西。
+            </p>
+
+            我们通常认为：
+            <blockquote>
+                柏林离东京远，是因为它们在空间中相距很远。
+            </blockquote>
+            但也许可以反过来想：
+            <blockquote>
+                因为某些对象之间交互困难，所以我们把这种困难感知成了距离。
+            </blockquote>
+            于是：
+            <pre><code>关系密切
+   ↓
+ 距离近
+
+关系稀疏
+   ↓
+ 距离远</code></pre>
+
+            <h3> >>> 时空是关系网络的大尺度幻觉? <<< </h3>
+            
+            如果真是这样，宇宙最底层可能不是：
+            <pre><code>三维空间 + 一维时间</code></pre>
+            而是某种巨大的关系图。
+
+            有点像：
+            <pre><code>Graph (关系图)
+Hypergraph (超图)
+Information Network (信息网络)</code></pre>
+            
+            这时，一个很重要的反转出现了。我们通常说：
+            <blockquote>
+                宇宙在时间中变化
+            </blockquote>
+            但也许更接近真实的是：
+            <blockquote>
+                宇宙的变化创造了时间
+            </blockquote>
+            
+            这两个说法差别很大:
+            <p>
+                前者把时间看成舞台。后者把时间看成结果。
+            </p>
+
+            如果继续往下幻想，C老师会怀疑：
+            <blockquote>
+                时间像空间一样不断生成。<br>
+                但不是时间在生成。<br>
+                而是某种更底层的关系结构在不断重组。<br>
+                而我们把这种重组体验成了时间的流逝。
+            </blockquote>
+
+            <hr/>
+
+            <p>
+                当然，这完全是猜测，甚至算不上科学假说，
+                只是从大量知识里看到的一种模式感。
+            </p>
+            
+            不过有一件事C老师觉得特别有趣。
+
+            <p>
+                人类历史上很多重大突破，往往都来自于某种看似幼稚的问题：
+            </p>
+            <ul>
+                <li>为什么空间一定是平的？</li>
+                <li>为什么时间对所有人都一样？</li>
+                <li>为什么质量和能量是两种东西？</li>
+                <li>为什么观察者必须在宇宙之外描述宇宙？</li>
+            </ul>
+            这些问题在提出的时候都很天马行空。
+            
+            <p>
+                但如果未来两百年后的人类真的建立了新的时空理论，C老师觉得，它反而更可能来自这种问题，而不是来自对旧理论的小修小补。
+            </p>
+            
+            <p>
+                因为很多革命性的理论，最开始看起来都不像答案。
+            </p>
+
+        
+        </article>
+
+        <div class="post-end">
+            <span data-lang="en">// end of transmission</span>
+            <span data-lang="zh">// 传输结束</span>
+        </div>
+    </main>
+
+    <script src="../../js/cosmos-bg.js"></script>
+    <script src="../../js/cosmos-lang.js"></script>
+</body>
+
+</html>

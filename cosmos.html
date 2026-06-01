@@ -1,11 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="lang-en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>cosmos-01 // observation deck</title>
     <link rel="icon" href="favicon.ico">
+
+    <script>
+        // pick initial language before first paint — avoids flash
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('cosmos_lang'); } catch (e) {}
+            var detected = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+            var lang = saved || detected;
+            if (lang !== 'en') {
+                var h = document.documentElement;
+                h.classList.remove('lang-en');
+                h.classList.add('lang-' + lang);
+                h.lang = 'zh-CN';
+                document.title = 'cosmos-01 // 观测台';
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -22,80 +40,191 @@
     <div class="status-bar">
         <span>STATION COSMOS-01</span>
         <span class="sep">::</span>
-        <span>OBSERVATION DECK</span>
+        <span>
+            <span data-lang="en">OBSERVATION DECK</span>
+            <span data-lang="zh">观测台</span>
+        </span>
         <span class="sep">::</span>
-        <span>STATUS: <span class="live">LIVE</span></span>
+        <span>
+            <span data-lang="en">STATUS:</span>
+            <span data-lang="zh">状态:</span>
+            <span class="live">
+                <span data-lang="en">LIVE</span>
+                <span data-lang="zh">在线</span>
+            </span>
+        </span>
+        <span class="lang-toggle">
+            <span class="label">LANG:</span>
+            <button type="button" data-set-lang="en" aria-label="English">EN</button>
+            <span class="divider">/</span>
+            <button type="button" data-set-lang="zh" aria-label="中文">中</button>
+        </span>
     </div>
 
     <main class="deck">
         <div class="deck-header">
-            <a href="index.html" class="back-link">&larr; return to surface</a>
-            <span class="deck-tag">// unlisted</span>
+            <a href="index.html" class="back-link">
+                <span data-lang="en">&larr; return to surface</span>
+                <span data-lang="zh">&larr; 返回地表</span>
+            </a>
+            <span class="deck-tag">
+                <span data-lang="en">// unlisted</span>
+                <span data-lang="zh">// 未列出</span>
+            </span>
         </div>
 
-        <h1 class="hero" id="hero">&gt;</h1>
-        <p class="lede">
+        <h1 class="hero" id="hero">
+            <span class="hero-text" data-lang="en">&gt;</span>
+            <span class="hero-text" data-lang="zh">&gt;</span>
+        </h1>
+        <p class="lede" data-lang="en">
             // you crossed the threshold.<br>
             // this is the <span class="hl">observation deck</span> &mdash;<br>
             // a place for things that drift outside the main signal.
+        </p>
+        <p class="lede" data-lang="zh">
+            // 你穿过了隧道。<br>
+            // 这里是<span class="hl">观测台</span> &mdash;<br>
+            // 一个接收主信号之外的游离电波的地方。
         </p>
 
         <section class="block">
             <header class="block-header">
                 <span class="bracket">[</span>
-                <h2>now transmitting</h2>
+                <h2>
+                    <span data-lang="en">now transmitting</span>
+                    <span data-lang="zh">正在传输</span>
+                </h2>
                 <span class="bracket">]</span>
-                <span class="meta">in progress</span>
+                <span class="meta">
+                    <span data-lang="en">in progress</span>
+                    <span data-lang="zh">进行中</span>
+                </span>
             </header>
             <article class="packet">
-                <div class="ts">0x001 &nbsp;//&nbsp; live</div>
-                <h3>a signal i'm currently shaping <span class="badge">draft</span></h3>
-                <p>
+                <a href="blogs/time_emergent/index.html">
+                    <div class="ts">
+                        0x001 &nbsp;//&nbsp;
+                        <span data-lang="en">live</span>
+                        <span data-lang="zh">在线</span>
+                    </div>
+                    <h3>
+                        <span data-lang="en">Is Spacetime a Large-Scale Illusion?</span>
+                        <span data-lang="zh">时空是一种大尺度幻觉?</span>
+                        <span class="badge">
+                            <span data-lang="en">draft</span>
+                            <span data-lang="zh">草稿</span>
+                        </span>
+                    </h3>
+                    <p data-lang="en">
+                        A conjecture on spacetime, relations, and emergent time.
+                    </p>
+                    <p data-lang="zh">
+                        关于时空、关系网络与时间涌现的一个猜想。
+                    </p>
+                </a>
+            </article>
+            <!-- <article class="packet">
+                <div class="ts">
+                    0x001 &nbsp;//&nbsp;
+                    <span data-lang="en">locked</span>
+                    <span data-lang="zh">锁定</span>
+                </div>
+                <h3>
+                    <span data-lang="en">a signal i'm currently shaping</span>
+                    <span data-lang="zh">一段正在塑形的信号</span>
+                    <span class="badge">
+                        <span data-lang="en">draft</span>
+                        <span data-lang="zh">草稿</span>
+                    </span>
+                </h3>
+                <p data-lang="en">
                     (describe something you're working through &mdash;
                     a half-built tool, a hypothesis that hasn't crystallized,
                     a paragraph that won't sit still.)
                 </p>
-            </article>
+                <p data-lang="zh">
+                    (描述你正在琢磨的某件事 &mdash; 一个半成品工具、
+                    一个还没成型的假设、一段定不下来的文字。)
+                </p>
+            </article> -->
         </section>
 
-        <section class="block">
+        <!-- <section class="block">
             <header class="block-header">
                 <span class="bracket">[</span>
-                <h2>stable signals</h2>
+                <h2>
+                    <span data-lang="en">stable signals</span>
+                    <span data-lang="zh">稳定信号</span>
+                </h2>
                 <span class="bracket">]</span>
-                <span class="meta">in orbit</span>
+                <span class="meta">
+                    <span data-lang="en">in orbit</span>
+                    <span data-lang="zh">稳定轨道</span>
+                </span>
             </header>
             <article class="packet">
-                <div class="ts">0x002 &nbsp;//&nbsp; locked</div>
-                <h3>a transmission that came through</h3>
-                <p>
+                <div class="ts">
+                    0x002 &nbsp;//&nbsp;
+                    <span data-lang="en">locked</span>
+                    <span data-lang="zh">锁定</span>
+                </div>
+                <h3>
+                    <span data-lang="en">a transmission that came through</span>
+                    <span data-lang="zh">一段顺利接收的传输</span>
+                </h3>
+                <p data-lang="en">
                     (something finished and humming on a clean carrier wave &mdash;
                     a paper, a talk, a script, a small artifact.
                     leave a beacon here.)
                 </p>
+                <p data-lang="zh">
+                    (一件已经完成、在干净载波上稳定运行的东西 &mdash;
+                    一篇论文、一次演讲、一段脚本、一个小作品。
+                    在这留下一个信标。)
+                </p>
             </article>
-        </section>
+        </section> -->
 
         <section class="block">
             <header class="block-header">
                 <span class="bracket">[</span>
-                <h2>in the void</h2>
+                <h2>
+                    <span data-lang="en">in the void</span>
+                    <span data-lang="zh">在虚空中</span>
+                </h2>
                 <span class="bracket">]</span>
-                <span class="meta">unverified</span>
+                <span class="meta">
+                    <span data-lang="en">unverified</span>
+                    <span data-lang="zh">未验证</span>
+                </span>
             </header>
+            <!-- Template -->
             <article class="packet">
-                <div class="ts">0x003 &nbsp;//&nbsp; ???</div>
-                <h3>a faint signal of unknown origin</h3>
-                <p>
+                <div class="ts">
+                    0x003 &nbsp;//&nbsp; ???
+                </div>
+                <h3>
+                    <span data-lang="en">a faint signal of unknown origin</span>
+                    <span data-lang="zh">一段来源不明的微弱信号</span>
+                </h3>
+                <p data-lang="en">
                     (scraps, abandoned drafts, hypotheses you weren't sure
                     how to pin down. they orbit out here until they resolve.
                     or don't.)
+                </p>
+                <p data-lang="zh">
+                    (碎片、被搁置的草稿、还没想清楚怎么定位的假设。
+                    它们在外轨道绕行，直到尘埃落定。或者下落不明。)
                 </p>
             </article>
         </section>
 
         <div class="transmitter-area">
-            <p class="prompt">[ tap to transmit ]</p>
+            <p class="prompt">
+                <span data-lang="en">[ tap to transmit ]</span>
+                <span data-lang="zh">[ 点击发射 ]</span>
+            </p>
             <button class="transmitter" id="dish" aria-label="transmit a signal">
                 <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8">
                     <circle cx="30" cy="30" r="28" opacity="0.22"/>
@@ -107,10 +236,15 @@
             <p class="status" id="dish-status">// silence</p>
         </div>
 
-        <div class="footer-note">// the channel is always open</div>
+        <div class="footer-note">
+            <span data-lang="en">// the channel is always open</span>
+            <span data-lang="zh">// 频道永久开放</span>
+        </div>
 
         <div class="visit-tally">
-            <span class="count" id="visit-count">·</span> probes received
+            <span class="count" id="visit-count">·</span>
+            <span data-lang="en">probes received</span>
+            <span data-lang="zh">次探测抵达</span>
             &nbsp;<span class="dim">// ggghsl-github-io.cosmos</span>
             <script>
                 fetch('https://api.counterapi.dev/v1/ggghsl-github-io/cosmos/up')
@@ -125,17 +259,31 @@
 
     <script src="js/cosmos-bg.js"></script>
     <script>
-        /* --- hero typewriter --- */
+        /* --- hero typewriter (bilingual) --- */
         (function () {
             var hero = document.getElementById('hero');
-            var text = '> hello, traveler.';
-            hero.textContent = '';
+            var en = hero.querySelector('[data-lang="en"]');
+            var zh = hero.querySelector('[data-lang="zh"]');
+            var texts = {
+                en: '> hello, traveler.',
+                zh: '> 你好,旅行者。'
+            };
+
+            // pre-fill both so a mid-typing language switch still shows full text
+            en.textContent = texts.en;
+            zh.textContent = texts.zh;
+
+            var lang = document.documentElement.classList.contains('lang-zh') ? 'zh' : 'en';
+            var active = (lang === 'zh') ? zh : en;
+            var text = texts[lang];
+            active.textContent = '';
+
             hero.classList.add('typing');
             setTimeout(function () {
                 var i = 0;
                 var t = setInterval(function () {
                     if (i < text.length) {
-                        hero.textContent += text.charAt(i++);
+                        active.textContent += text.charAt(i++);
                     } else {
                         clearInterval(t);
                         setTimeout(function () { hero.classList.remove('typing'); }, 2200);
@@ -144,13 +292,13 @@
             }, 350);
         })();
 
-        /* --- transmitter --- */
+        /* --- transmitter (bilingual) --- */
         (function () {
             var dish = document.getElementById('dish');
             var status = document.getElementById('dish-status');
             var n = parseInt(localStorage.getItem('cosmos_pings') || '0', 10);
 
-            var phrases = [
+            var phrasesEn = [
                 '// silence',
                 '// signal away',
                 '// echo waiting',
@@ -162,15 +310,39 @@
                 '// a comet drifts past',
                 '// the void remembers you'
             ];
+            var phrasesZh = [
+                '// 静默',
+                '// 信号发出',
+                '// 等待回声',
+                '// 远方一颗星体闪烁',
+                '// 静电散去',
+                '// 一阵低鸣',
+                '// 模式浮现',
+                '// 载波锁定',
+                '// 一颗彗星飘过',
+                '// 虚空记得你'
+            ];
+
+            function currentLang() {
+                return document.documentElement.classList.contains('lang-zh') ? 'zh' : 'en';
+            }
 
             function render() {
+                var phrases = (currentLang() === 'zh') ? phrasesZh : phrasesEn;
                 var i = Math.min(n, phrases.length - 1);
                 status.innerHTML = phrases[i] + (n > 0 ? ' <span class="n">·' + n + '</span>' : '');
-                // glow grows with n, capped
                 dish.style.setProperty('--glow', Math.min(n * 2, 18));
                 dish.classList.toggle('armed', n >= 7);
             }
             render();
+
+            // when language switches, update the status phrase + page title
+            document.addEventListener('cosmoslangchange', function (e) {
+                render();
+                document.title = (e.detail.lang === 'zh')
+                    ? 'cosmos-01 // 观测台'
+                    : 'cosmos-01 // observation deck';
+            });
 
             function emitRing(warm) {
                 var ring = document.createElement('div');
@@ -184,7 +356,6 @@
                 localStorage.setItem('cosmos_pings', String(n));
                 render();
                 emitRing(n >= 7);
-                // a second delayed ring at higher counts — like an echo
                 if (n >= 4) setTimeout(function () { emitRing(n >= 7); }, 280);
                 if (n >= 7) setTimeout(function () { emitRing(true); }, 560);
 
@@ -230,6 +401,7 @@
             }
         })();
     </script>
+    <script src="js/cosmos-lang.js"></script>
 </body>
 
 </html>

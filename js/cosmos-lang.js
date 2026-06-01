@@ -18,6 +18,11 @@
             btns[i].classList.toggle('active', match);
             btns[i].setAttribute('aria-pressed', match ? 'true' : 'false');
         }
+
+        // notify scripts that own JS-generated text (transmitter status, etc.)
+        try {
+            document.dispatchEvent(new CustomEvent('cosmoslangchange', { detail: { lang: l } }));
+        } catch (e) {}
     }
 
     // read the current language from html class (set by inline head script)
