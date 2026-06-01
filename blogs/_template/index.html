@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<!--
+    BLOG POST TEMPLATE
+    ------------------
+    To start a new post:
+      1. Copy this whole folder:  cp -r blogs/_template blogs/<your-slug>
+      2. In the copy, fill in:
+          - <title>                          (line ~25)
+          - status-bar "TRANSMISSION 0xXXX"  (line ~43)
+          - .deck-tag  "// 0xXXX"            (line ~51)
+          - .post-meta (date + section: "now transmitting" / "stable signals" / "in the void")  (line ~55)
+          - h1.post-title                    (line ~60)
+          - .post-body (your actual content) (line ~62 and below)
+      3. (Optional) add this post to cosmos.html as a real link in one of the three blocks.
+
+    The _template/ folder is excluded from GitHub Pages because it starts with "_",
+    so it won't appear on the live site — only useful as a local starting point.
+-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[ title ] // cosmos-01</title>
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cosmos.css">
+</head>
+
+<body>
+    <div class="cosmos-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="grid"></div>
+        <div class="starfield" id="starfield"></div>
+    </div>
+
+    <div class="status-bar">
+        <span>STATION COSMOS-01</span>
+        <span class="sep">::</span>
+        <span>TRANSMISSION 0xXXX</span>
+        <span class="sep">::</span>
+        <span>STATUS: <span class="live">LIVE</span></span>
+    </div>
+
+    <main class="deck post">
+        <div class="deck-header">
+            <a href="../../cosmos.html" class="back-link">&larr; back to deck</a>
+            <span class="deck-tag">// 0xXXX</span>
+        </div>
+
+        <div class="post-meta">
+            <span>YYYY.MM.DD</span>
+            <span class="sep">::</span>
+            <span class="tag">now transmitting</span>
+        </div>
+
+        <h1 class="post-title">[ post title ]</h1>
+
+        <article class="post-body">
+            <p>
+                (Lead paragraph &mdash; frame the thread you'll be following.
+                Set the scene, the question, the conjecture.)
+            </p>
+
+            <h2>a section heading</h2>
+            <p>
+                Standard prose, with <strong>bold for emphasis</strong>,
+                <em>italic for softer accent</em>, and inline <code>code()</code>
+                for technical terms. A link looks like
+                <a href="#">this</a> &mdash; cyan, with a dotted underline that
+                glows on hover.
+            </p>
+
+            <p>Lists are styled to fit the cosmic palette:</p>
+
+            <ul>
+                <li>first observation</li>
+                <li>second hypothesis</li>
+                <li>third loose thread</li>
+            </ul>
+
+            <h3>a smaller subheading</h3>
+            <p>
+                Code blocks use a slightly tinted background with a cyan
+                accent stripe on the left:
+            </p>
+
+<pre><code>// signal.js
+function transmit(payload) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            resolve({ status: 'received', echo: payload });
+        }, 280);
+    });
+}</code></pre>
+
+            <p>
+                Blockquotes work for setting a passage apart &mdash; a citation,
+                an aside, a line from elsewhere:
+            </p>
+
+            <blockquote>
+                <p>&ldquo;The cosmos is within us. We are made of star-stuff.
+                We are a way for the universe to know itself.&rdquo;</p>
+            </blockquote>
+
+            <hr/>
+
+            <p>
+                (Closing thought &mdash; the takeaway, the open question, the
+                thing you want the reader to carry with them.)
+            </p>
+        </article>
+
+        <div class="post-end">// end of transmission</div>
+    </main>
+
+    <script src="../../js/cosmos-bg.js"></script>
+</body>
+
+</html>
