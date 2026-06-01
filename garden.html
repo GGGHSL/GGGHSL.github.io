@@ -263,6 +263,36 @@
             100% { left: calc(100vw + 40px); transform: translateY(0); }
         }
 
+        /* butterfly: outer host follows a path around the flower,
+           inner wing handles the fluttering motion */
+        .butterfly-host {
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 3;
+            user-select: none;
+            pointer-events: none;
+            will-change: transform;
+        }
+        .butterfly-wing {
+            display: inline-block;
+            font-size: 24px;
+            line-height: 1;
+            animation: wing-flap 0.32s ease-in-out infinite alternate;
+        }
+        @keyframes wing-flap {
+            from { transform: scaleX(1)   rotate(-4deg); }
+            to   { transform: scaleX(0.7) rotate(4deg); }
+        }
+
+        /* a soft glow halo behind the flower button when blooming */
+        .flower-btn.bloomed {
+            filter: drop-shadow(0 0 12px rgba(255, 200, 120, 0.55));
+        }
+        .flower-btn {
+            transition: filter 0.6s ease;
+        }
+
         @media (max-width: 520px) {
             h1.hello { font-size: 3em; }
             .subtitle { font-size: 1.3em; }
@@ -271,6 +301,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .drift span, .snail, h1.hello .flourish { animation: none; }
+            .butterfly-host { display: none; }
         }
     </style>
 </head>
@@ -296,7 +327,7 @@
 
         <section class="bed">
             <div class="section-title">
-                <span class="ornament">✿</span>
+                <span class="ornament">🌱</span>
                 <h2>Now growing</h2>
                 <span class="label">in progress</span>
             </div>
@@ -313,7 +344,7 @@
 
         <section class="bed">
             <div class="section-title">
-                <span class="ornament">❀</span>
+                <span class="ornament">🌸</span>
                 <h2>In bloom</h2>
                 <span class="label">finished things i'm fond of</span>
             </div>
@@ -329,7 +360,7 @@
 
         <section class="bed">
             <div class="section-title">
-                <span class="ornament">❁</span>
+                <span class="ornament">🍂</span>
                 <h2>From the compost</h2>
                 <span class="label">scraps &amp; half-ideas</span>
             </div>
@@ -360,6 +391,7 @@
             var btn = document.getElementById('water');
             var label = document.getElementById('water-count');
             var n = parseInt(localStorage.getItem('garden_water') || '0', 10);
+
             var phrases = [
                 'tap to water',
                 'one drop',
@@ -372,20 +404,158 @@
                 'a butterfly drifts by',
                 'it remembers you'
             ];
+            // glyph at each stage — matches the phrase above
+            var flowers = ['✿', '✿', '✿', '🌱', '🌿', '🍃', '🌷', '🌸', '🌺', '🌻'];
+            // 0,1,2: ✿  3:🌱  4:🌿  5:🍃  6:🌷  7:🌸  8:🌺  9:🌻
+
             function render() {
-                if (n === 0) { label.textContent = phrases[0]; return; }
                 var i = Math.min(n, phrases.length - 1);
-                label.textContent = phrases[i] + ' · ' + n;
+                var g = flowers[i];
+                var changed = (btn.textContent !== g);
+                btn.textContent = g;
+                if (n === 0) {
+                    label.textContent = phrases[0];
+                } else {
+                    label.textContent = phrases[i] + ' · ' + n;
+                }
+                // bloom halo from "humming" onwards
+                btn.classList.toggle('bloomed', n >= 7);
+                return changed;
             }
+
+            function spawnButterfly() {
+                // only one butterfly on stage at a time
+                if (document.querySelector('.butterfly-host')) return;
+
+                // anchor path to the flower button's current viewport position
+                var rect = btn.getBoundingClientRect();
+                var fx = rect.left + rect.width / 2;
+                var fy = rect.top + rect.height / 2;
+
+                var host = document.createElement('span');
+                host.className = 'butterfly-host';
+                var wing = document.createElement('span');
+                wing.className = 'butterfly-wing';
+                wing.textContent = '🦋';
+                host.appendChild(wing);
+                document.body.appendChild(host);
+
+                var W = window.innerWidth;
+                var fromLeft = Math.random() < 0.5;
+                var dirX = fromLeft ? 1 : -1;
+                var startX = fromLeft ? -60 : W + 60;
+                var endX   = fromLeft ? W + 60 : -60;
+                var startY = fy + (Math.random() - 0.5) * 140;
+                var endY   = startY - 80 - Math.random() * 60;
+                var R = 55;
+
+                function lerp(a, b, t) { return a + (b - a) * t; }
+                function frame(x, y, offset) {
+                    return {
+                        transform: 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)',
+                        offset: offset
+                    };
+                }
+                // build a wandering segment: many small steps from p0 to p1,
+                // each nudged by a sine wave + random jitter so motion is non-linear
+                function wanderPath(p0, p1, steps, offStart, offEnd, waveAmp, waveCycles, jitterX, jitterY) {
+                    var out = [];
+                    // randomize wave phase so each visit looks different
+                    var phase0 = Math.random() * Math.PI * 2;
+                    for (var i = 0; i <= steps; i++) {
+                        var t = i / steps;
+                        var x = lerp(p0.x, p1.x, t);
+                        var y = lerp(p0.y, p1.y, t);
+                        var phase = phase0 + t * Math.PI * waveCycles;
+                        // wobble mostly perpendicular to horizontal flight,
+                        // with a smaller longitudinal component so it also speeds/slows
+                        y += Math.sin(phase) * waveAmp;
+                        x += Math.cos(phase) * waveAmp * 0.4;
+                        x += (Math.random() - 0.5) * jitterX;
+                        y += (Math.random() - 0.5) * jitterY;
+                        out.push(frame(x, y, lerp(offStart, offEnd, t)));
+                    }
+                    return out;
+                }
+
+                // ENTRY (0 → 0.30): off-screen → near flower, fluttery
+                var entry = wanderPath(
+                    { x: startX, y: startY },
+                    { x: fx - R * 1.6 * dirX, y: fy - R * 1.2 },
+                    7, 0, 0.30,
+                    /*waveAmp*/ 28, /*waveCycles*/ 3.2,
+                    /*jitterX*/ 22, /*jitterY*/ 16
+                );
+
+                // ORBIT (0.30 → 0.82): weave around the flower
+                var orbitPts = [
+                    [fx - R * 0.5 * dirX, fy - R * 1.6, 0.38],
+                    [fx + R * 0.5 * dirX, fy - R * 1.7, 0.47],
+                    [fx + R * 1.1 * dirX, fy - R * 0.9, 0.56],
+                    [fx + R * 0.3 * dirX, fy - R * 0.1, 0.64],
+                    [fx - R * 0.6 * dirX, fy - R * 1.0, 0.72],
+                    [fx + R * 0.7 * dirX, fy - R * 1.6, 0.82]
+                ];
+                var orbit = orbitPts.map(function (p) {
+                    return frame(
+                        p[0] + (Math.random() - 0.5) * 14,
+                        p[1] + (Math.random() - 0.5) * 12,
+                        p[2]
+                    );
+                });
+
+                // EXIT (0.82 → 1.0): away from flower, fluttery again
+                var exitStart = { x: fx + R * 0.7 * dirX, y: fy - R * 1.6 };
+                var exit = wanderPath(
+                    exitStart, { x: endX, y: endY },
+                    5, 0.82, 1.0,
+                    /*waveAmp*/ 22, /*waveCycles*/ 2.6,
+                    /*jitterX*/ 18, /*jitterY*/ 14
+                ).slice(1); // drop first frame (duplicates last orbit point's offset slot)
+
+                var anim = host.animate(
+                    entry.concat(orbit).concat(exit),
+                    {
+                        duration: 14000 + Math.random() * 3000,
+                        easing: 'linear'
+                    }
+                );
+                anim.onfinish = function () { host.remove(); };
+            }
+
             render();
+
             btn.addEventListener('click', function () {
+                var prev = n;
                 n += 1;
                 localStorage.setItem('garden_water', String(n));
-                render();
-                btn.animate(
-                    [{ transform: 'scale(1.25) rotate(-8deg)' }, { transform: 'scale(1) rotate(0deg)' }],
-                    { duration: 320, easing: 'ease-out' }
-                );
+                var changed = render();
+
+                if (changed) {
+                    // bigger pop when the flower transforms
+                    btn.animate(
+                        [
+                            { transform: 'scale(0.55) rotate(-18deg)', opacity: 0.35 },
+                            { transform: 'scale(1.35) rotate(10deg)', opacity: 1 },
+                            { transform: 'scale(1) rotate(0deg)', opacity: 1 }
+                        ],
+                        { duration: 520, easing: 'ease-out' }
+                    );
+                } else {
+                    btn.animate(
+                        [
+                            { transform: 'scale(1.18) rotate(-6deg)' },
+                            { transform: 'scale(1) rotate(0deg)' }
+                        ],
+                        { duration: 300, easing: 'ease-out' }
+                    );
+                }
+
+                // butterfly: guaranteed when the phrase first appears (n === 8),
+                // and an occasional return visitor after that
+                if (n === 8 || (n > 8 && Math.random() < 0.4)) {
+                    spawnButterfly();
+                }
             });
         })();
     </script>
