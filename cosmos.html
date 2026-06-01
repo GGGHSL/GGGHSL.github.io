@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cosmos-01 // observation deck</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06081a;
+            --bg-2: #0a0e2e;
+            --cyan: #7ee7ff;
+            --lavender: #b08cff;
+            --warm: #ffd56b;
+            --text: #d8def0;
+            --text-dim: #7d8aa3;
+            --text-faint: #4a546b;
+            --grid: rgba(126, 231, 255, 0.04);
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* --- background layers --- */
+        .cosmos-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .nebula {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 60% 45% at 18% 28%, rgba(176, 140, 255, 0.16) 0%, transparent 65%),
+                radial-gradient(ellipse 55% 40% at 82% 72%, rgba(126, 231, 255, 0.12) 0%, transparent 65%),
+                radial-gradient(circle at 50% 100%, rgba(255, 213, 107, 0.05) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 70%, var(--bg) 100%);
+        }
+        .grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 48px 48px;
+            -webkit-mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 85%);
+                    mask-image: radial-gradient(ellipse 80% 80% at center, black 30%, transparent 85%);
+        }
+        .starfield { position: absolute; inset: 0; }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle ease-in-out infinite alternate;
+        }
+        .star.s { width: 1px; height: 1px; opacity: 0.45; }
+        .star.m { width: 2px; height: 2px; opacity: 0.75; }
+        .star.l { width: 2.5px; height: 2.5px; opacity: 1; box-shadow: 0 0 5px rgba(255,255,255,0.7); }
+        @keyframes twinkle {
+            from { opacity: 0.25; }
+            to   { opacity: 1; }
+        }
+
+        /* --- layout --- */
+        .deck {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 32px 32px 140px;
+        }
+
+        /* --- status bar --- */
+        .status-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 2;
+            background: rgba(6, 8, 26, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(126, 231, 255, 0.12);
+            padding: 8px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7em;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .status-bar .live::before {
+            content: '●';
+            color: #5be58a;
+            margin-right: 6px;
+            animation: pulse-dot 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 0.6; }
+            50%      { opacity: 1; text-shadow: 0 0 6px #5be58a; }
+        }
+        .status-bar .sep { color: var(--text-faint); }
+
+        /* --- deck header --- */
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 56px;
+            margin-bottom: 64px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85em;
+        }
+        .back-link {
+            color: var(--cyan);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .back-link:hover {
+            text-decoration: none;
+            color: var(--cyan);
+            text-shadow: 0 0 10px rgba(126, 231, 255, 0.7);
+            transform: translateX(-3px);
+        }
+        .deck-tag { color: var(--text-faint); }
+
+        /* --- hero --- */
+        h1.hero {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+            font-size: 2.4em;
+            margin: 0 0 16px;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            min-height: 1.2em;
+        }
+        h1.hero.typing::after {
+            content: '▮';
+            color: var(--cyan);
+            margin-left: 4px;
+            animation: blink 0.8s steps(2) infinite;
+        }
+        @keyframes blink {
+            0%, 50%   { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .lede {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-dim);
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin: 0 0 72px;
+        }
+        .lede .hl { color: var(--lavender); }
+
+        /* --- blocks --- */
+        section.block {
+            margin-bottom: 56px;
+        }
+        .block-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(126, 231, 255, 0.1);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .block-header h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            font-size: 1.0em;
+            color: var(--cyan);
+            letter-spacing: 0.06em;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .block-header .bracket {
+            color: var(--text-faint);
+            font-size: 1.0em;
+        }
+        .block-header .meta {
+            margin-left: auto;
+            color: var(--text-faint);
+            font-size: 0.78em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .packet {
+            padding: 18px 22px;
+            border: 1px solid rgba(126, 231, 255, 0.08);
+            border-left: 2px solid rgba(126, 231, 255, 0.25);
+            border-radius: 2px;
+            margin-bottom: 14px;
+            background: rgba(126, 231, 255, 0.015);
+            transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+        .packet:hover {
+            border-color: rgba(126, 231, 255, 0.3);
+            border-left-color: var(--cyan);
+            background: rgba(126, 231, 255, 0.04);
+            transform: translateX(3px);
+        }
+        .packet .ts {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72em;
+            color: var(--text-faint);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .packet h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 400;
+            font-size: 1.05em;
+            margin: 0 0 10px;
+            color: var(--text);
+        }
+        .packet p {
+            color: var(--text-dim);
+            font-size: 0.9em;
+            line-height: 1.65;
+            margin: 0;
+        }
+        .packet .badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.66em;
+            padding: 2px 8px;
+            border: 1px solid rgba(176, 140, 255, 0.35);
+            color: var(--lavender);
+            border-radius: 1px;
+            margin-left: 8px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        /* --- transmitter (interactive) --- */
+        .transmitter-area {
+            position: relative;
+            margin: 96px 0 32px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .transmitter-area .prompt {
+            color: var(--text-faint);
+            font-size: 0.78em;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin: 0 0 16px;
+        }
+        .transmitter {
+            --glow: 0;
+            position: relative;
+            display: inline-block;
+            width: 72px; height: 72px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            color: var(--cyan);
+            cursor: pointer;
+            filter: drop-shadow(0 0 calc(var(--glow) * 1px) rgba(126, 231, 255, 0.55));
+            transition: transform 0.18s ease, filter 0.4s ease;
+        }
+        .transmitter:hover { transform: scale(1.06); }
+        .transmitter:active { transform: scale(0.94); }
+        .transmitter svg { width: 100%; height: 100%; display: block; }
+        .transmitter .core {
+            fill: var(--cyan);
+            transition: fill 0.4s ease;
+        }
+        .transmitter.armed .core { fill: var(--warm); }
+        .transmitter.armed { color: var(--warm); }
+        .transmitter-area .status {
+            margin: 18px 0 0;
+            color: var(--text-dim);
+            font-size: 0.85em;
+            letter-spacing: 0.04em;
+            min-height: 1.4em;
+        }
+        .transmitter-area .status .n {
+            color: var(--lavender);
+            margin-left: 8px;
+        }
+
+        /* pulse rings */
+        .pulse-ring {
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 72px; height: 72px;
+            margin-left: -36px; margin-top: -36px;
+            border: 1px solid var(--cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: ring-out 2.2s ease-out forwards;
+        }
+        .pulse-ring.warm { border-color: var(--warm); }
+        @keyframes ring-out {
+            0%   { transform: scale(0.5); opacity: 0.85; }
+            100% { transform: scale(5);   opacity: 0; }
+        }
+
+        /* --- footer --- */
+        .footer-note {
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-faint);
+            font-size: 0.85em;
+            letter-spacing: 0.04em;
+        }
+        .visit-tally {
+            margin-top: 12px;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-faint);
+            font-size: 0.72em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .visit-tally .count { color: var(--cyan); }
+        .visit-tally .dim { color: var(--text-faint); opacity: 0.6; }
+
+        /* --- comet --- */
+        .comet {
+            position: fixed;
+            left: 0; top: 0;
+            width: 3px; height: 3px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 3;
+            pointer-events: none;
+            box-shadow:
+                0 0 6px 1px #fff,
+                0 0 18px 4px rgba(126, 231, 255, 0.6);
+            will-change: transform;
+        }
+        .comet::after {
+            content: '';
+            position: absolute;
+            right: 3px;
+            top: 50%;
+            margin-top: -0.5px;
+            width: 70px;
+            height: 1px;
+            background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(126,231,255,0.4) 40%, transparent);
+            box-shadow: 0 0 4px rgba(126, 231, 255, 0.5);
+            transform-origin: right center;
+        }
+
+        @media (max-width: 560px) {
+            h1.hero { font-size: 1.7em; }
+            .deck { padding: 24px 20px 100px; }
+            .status-bar { font-size: 0.62em; gap: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .star, .status-bar .live::before, .comet { animation: none; }
+            .pulse-ring { animation-duration: 1ms; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cosmos-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="grid"></div>
+        <div class="starfield" id="starfield"></div>
+    </div>
+
+    <div class="status-bar">
+        <span>STATION COSMOS-01</span>
+        <span class="sep">::</span>
+        <span>OBSERVATION DECK</span>
+        <span class="sep">::</span>
+        <span>STATUS: <span class="live">LIVE</span></span>
+    </div>
+
+    <main class="deck">
+        <div class="deck-header">
+            <a href="index.html" class="back-link">&larr; return to surface</a>
+            <span class="deck-tag">// unlisted</span>
+        </div>
+
+        <h1 class="hero" id="hero">&gt;</h1>
+        <p class="lede">
+            // you crossed the threshold.<br>
+            // this is the <span class="hl">observation deck</span> &mdash;<br>
+            // a place for things that drift outside the main signal.
+        </p>
+
+        <section class="block">
+            <header class="block-header">
+                <span class="bracket">[</span>
+                <h2>now transmitting</h2>
+                <span class="bracket">]</span>
+                <span class="meta">in progress</span>
+            </header>
+            <article class="packet">
+                <div class="ts">0x001 &nbsp;//&nbsp; live</div>
+                <h3>a signal i'm currently shaping <span class="badge">draft</span></h3>
+                <p>
+                    (describe something you're working through &mdash;
+                    a half-built tool, a hypothesis that hasn't crystallized,
+                    a paragraph that won't sit still.)
+                </p>
+            </article>
+        </section>
+
+        <section class="block">
+            <header class="block-header">
+                <span class="bracket">[</span>
+                <h2>stable signals</h2>
+                <span class="bracket">]</span>
+                <span class="meta">in orbit</span>
+            </header>
+            <article class="packet">
+                <div class="ts">0x002 &nbsp;//&nbsp; locked</div>
+                <h3>a transmission that came through</h3>
+                <p>
+                    (something finished and humming on a clean carrier wave &mdash;
+                    a paper, a talk, a script, a small artifact.
+                    leave a beacon here.)
+                </p>
+            </article>
+        </section>
+
+        <section class="block">
+            <header class="block-header">
+                <span class="bracket">[</span>
+                <h2>in the void</h2>
+                <span class="bracket">]</span>
+                <span class="meta">unverified</span>
+            </header>
+            <article class="packet">
+                <div class="ts">0x003 &nbsp;//&nbsp; ???</div>
+                <h3>a faint signal of unknown origin</h3>
+                <p>
+                    (scraps, abandoned drafts, hypotheses you weren't sure
+                    how to pin down. they orbit out here until they resolve.
+                    or don't.)
+                </p>
+            </article>
+        </section>
+
+        <div class="transmitter-area">
+            <p class="prompt">[ tap to transmit ]</p>
+            <button class="transmitter" id="dish" aria-label="transmit a signal">
+                <svg viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="0.8">
+                    <circle cx="30" cy="30" r="28" opacity="0.22"/>
+                    <circle cx="30" cy="30" r="20" opacity="0.4"/>
+                    <circle cx="30" cy="30" r="12" opacity="0.65"/>
+                    <circle class="core" cx="30" cy="30" r="4" stroke="none"/>
+                </svg>
+            </button>
+            <p class="status" id="dish-status">// silence</p>
+        </div>
+
+        <div class="footer-note">// the channel is always open</div>
+
+        <div class="visit-tally">
+            <span class="count" id="visit-count">·</span> probes received
+            &nbsp;<span class="dim">// ggghsl-github-io.cosmos</span>
+            <script>
+                fetch('https://api.counterapi.dev/v1/ggghsl-github-io/cosmos/up')
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        document.getElementById('visit-count').textContent = data.count;
+                    })
+                    .catch(function () {});
+            </script>
+        </div>
+    </main>
+
+    <script>
+        /* --- starfield --- */
+        (function () {
+            var field = document.getElementById('starfield');
+            var n = window.innerWidth < 600 ? 60 : 110;
+            for (var i = 0; i < n; i++) {
+                var s = document.createElement('span');
+                var r = Math.random();
+                s.className = 'star ' + (r < 0.65 ? 's' : r < 0.92 ? 'm' : 'l');
+                s.style.left = (Math.random() * 100) + '%';
+                s.style.top = (Math.random() * 100) + '%';
+                s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+                s.style.animationDuration = (2 + Math.random() * 5).toFixed(2) + 's';
+                field.appendChild(s);
+            }
+        })();
+
+        /* --- hero typewriter --- */
+        (function () {
+            var hero = document.getElementById('hero');
+            var text = '> hello, traveler.';
+            hero.textContent = '';
+            hero.classList.add('typing');
+            setTimeout(function () {
+                var i = 0;
+                var t = setInterval(function () {
+                    if (i < text.length) {
+                        hero.textContent += text.charAt(i++);
+                    } else {
+                        clearInterval(t);
+                        setTimeout(function () { hero.classList.remove('typing'); }, 2200);
+                    }
+                }, 70);
+            }, 350);
+        })();
+
+        /* --- transmitter --- */
+        (function () {
+            var dish = document.getElementById('dish');
+            var status = document.getElementById('dish-status');
+            var n = parseInt(localStorage.getItem('cosmos_pings') || '0', 10);
+
+            var phrases = [
+                '// silence',
+                '// signal away',
+                '// echo waiting',
+                '// a distant star blinks',
+                '// static clears',
+                '// a low hum',
+                '// pattern emerging',
+                '// carrier locked',
+                '// a comet drifts past',
+                '// the void remembers you'
+            ];
+
+            function render() {
+                var i = Math.min(n, phrases.length - 1);
+                status.innerHTML = phrases[i] + (n > 0 ? ' <span class="n">·' + n + '</span>' : '');
+                // glow grows with n, capped
+                dish.style.setProperty('--glow', Math.min(n * 2, 18));
+                dish.classList.toggle('armed', n >= 7);
+            }
+            render();
+
+            function emitRing(warm) {
+                var ring = document.createElement('div');
+                ring.className = 'pulse-ring' + (warm ? ' warm' : '');
+                dish.parentElement.appendChild(ring);
+                ring.addEventListener('animationend', function () { ring.remove(); });
+            }
+
+            dish.addEventListener('click', function () {
+                n += 1;
+                localStorage.setItem('cosmos_pings', String(n));
+                render();
+                emitRing(n >= 7);
+                // a second delayed ring at higher counts — like an echo
+                if (n >= 4) setTimeout(function () { emitRing(n >= 7); }, 280);
+                if (n >= 7) setTimeout(function () { emitRing(true); }, 560);
+
+                if (n === 8 || (n > 8 && Math.random() < 0.4)) {
+                    spawnComet();
+                }
+            });
+
+            /* --- comet --- */
+            function spawnComet() {
+                if (document.querySelector('.comet')) return;
+
+                var c = document.createElement('div');
+                c.className = 'comet';
+                document.body.appendChild(c);
+
+                var W = window.innerWidth, H = window.innerHeight;
+                var fromLeft = Math.random() < 0.5;
+                var startX = fromLeft ? -90 : W + 90;
+                var endX   = fromLeft ? W + 90 : -90;
+                var startY = 40 + Math.random() * (H * 0.45);
+                var endY   = startY + 80 + Math.random() * 220;
+
+                var dx = endX - startX, dy = endY - startY;
+                var angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+                var anim = c.animate([
+                    {
+                        transform: 'translate(' + startX + 'px, ' + startY + 'px) rotate(' + angle + 'deg)',
+                        opacity: 0
+                    },
+                    { opacity: 1, offset: 0.08 },
+                    { opacity: 1, offset: 0.88 },
+                    {
+                        transform: 'translate(' + endX + 'px, ' + endY + 'px) rotate(' + angle + 'deg)',
+                        opacity: 0
+                    }
+                ], {
+                    duration: 5500 + Math.random() * 2500,
+                    easing: 'cubic-bezier(0.4, 0.1, 0.2, 1)'
+                });
+                anim.onfinish = function () { c.remove(); };
+            }
+        })();
+    </script>
+</body>
+
+</html>
