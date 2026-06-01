@@ -244,6 +244,18 @@
             text-align: center;
         }
 
+        .visit-tally {
+            margin-top: 16px;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            color: var(--whisper);
+            font-size: 1.05em;
+            letter-spacing: 0.01em;
+        }
+        .visit-tally .count {
+            color: var(--green-deep);
+        }
+
         /* a snail wandering across the bottom */
         .snail {
             position: fixed;
@@ -381,6 +393,18 @@
 
         <div class="footer-note">
             &mdash; the door is always open &mdash;
+        </div>
+
+        <div class="visit-tally">
+            <span class="count" id="garden-visit-count">·</span> visits to this garden ✿
+            <script>
+                fetch('https://api.counterapi.dev/v1/ggghsl-github-io/garden/up')
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        document.getElementById('garden-visit-count').textContent = data.count;
+                    })
+                    .catch(function () {});
+            </script>
         </div>
     </div>
 
