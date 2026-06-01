@@ -379,3 +379,35 @@ a.btn {
         display: flex;
     }
 }
+
+.secret-door {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #8DC579;
+    opacity: 0.18;
+    cursor: pointer;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secret-door:hover,
+.secret-door:focus {
+    opacity: 0.75;
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.secret-door svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
