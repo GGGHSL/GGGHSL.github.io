@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="lang-en">
 
 <!--
     BLOG POST TEMPLATE
@@ -7,13 +7,20 @@
     To start a new post:
       1. Copy this whole folder:  cp -r blogs/_template blogs/<your-slug>
       2. In the copy, fill in:
-          - <title>                          (line ~25)
-          - status-bar "TRANSMISSION 0xXXX"  (line ~43)
-          - .deck-tag  "// 0xXXX"            (line ~51)
-          - .post-meta (date + section: "now transmitting" / "stable signals" / "in the void")  (line ~55)
-          - h1.post-title                    (line ~60)
-          - .post-body (your actual content) (line ~62 and below)
+          - <title>                          (line ~30)
+          - status-bar "TRANSMISSION 0xXXX"  (line ~60)
+          - .deck-tag  "// 0xXXX"            (line ~75)
+          - .post-meta (date + section tag)  (line ~78)
+          - h1.post-title  (EN + ZH)         (line ~87)
+          - .post-body articles (EN + ZH)    (line ~92 onward)
       3. (Optional) add this post to cosmos.html as a real link in one of the three blocks.
+
+    Bilingual:
+      Each translatable element has two siblings — one with data-lang="en",
+      one with data-lang="zh". CSS hides the inactive language; the LANG
+      toggle in the status bar (top right) lets the reader switch.
+      Fill in both versions. If you only want one language for a given post,
+      just delete the unused [data-lang] sibling everywhere.
 
     The _template/ folder is excluded from GitHub Pages because it starts with "_",
     so it won't appear on the live site — only useful as a local starting point.
@@ -24,6 +31,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>[ title ] // cosmos-01</title>
     <link rel="icon" href="../../favicon.ico">
+
+    <script>
+        // pick initial language before first paint — avoids flash of EN
+        // when the reader prefers ZH (or vice versa).
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('cosmos_lang'); } catch (e) {}
+            var detected = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+            var lang = saved || detected;
+            if (lang !== 'en') {
+                var h = document.documentElement;
+                h.classList.remove('lang-en');
+                h.classList.add('lang-' + lang);
+                h.lang = 'zh-CN';
+            }
+        })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -43,23 +68,38 @@
         <span>TRANSMISSION 0xXXX</span>
         <span class="sep">::</span>
         <span>STATUS: <span class="live">LIVE</span></span>
+        <span class="lang-toggle">
+            <span class="label">LANG:</span>
+            <button type="button" data-set-lang="en" aria-label="English">EN</button>
+            <span class="divider">/</span>
+            <button type="button" data-set-lang="zh" aria-label="中文">中</button>
+        </span>
     </div>
 
     <main class="deck post">
         <div class="deck-header">
-            <a href="../../cosmos.html" class="back-link">&larr; back to deck</a>
+            <a href="../../cosmos.html" class="back-link">
+                <span data-lang="en">&larr; back to deck</span>
+                <span data-lang="zh">&larr; 回到观测台</span>
+            </a>
             <span class="deck-tag">// 0xXXX</span>
         </div>
 
         <div class="post-meta">
             <span>YYYY.MM.DD</span>
             <span class="sep">::</span>
-            <span class="tag">now transmitting</span>
+            <span class="tag">
+                <span data-lang="en">now transmitting</span>
+                <span data-lang="zh">正在传输</span>
+            </span>
         </div>
 
-        <h1 class="post-title">[ post title ]</h1>
+        <h1 class="post-title">
+            <span data-lang="en">[ post title ]</span>
+            <span data-lang="zh">[ 文章标题 ]</span>
+        </h1>
 
-        <article class="post-body">
+        <article class="post-body" data-lang="en">
             <p>
                 (Lead paragraph &mdash; frame the thread you'll be following.
                 Set the scene, the question, the conjecture.)
@@ -115,10 +155,69 @@ function transmit(payload) {
             </p>
         </article>
 
-        <div class="post-end">// end of transmission</div>
+        <article class="post-body" data-lang="zh">
+            <p>
+                （引言段落 &mdash; 描述这篇文章要追的那根线索。
+                设定场景、抛出问题、或者给一个猜想。）
+            </p>
+
+            <h2>一个章节标题</h2>
+            <p>
+                普通的正文段落,可以有 <strong>加粗用于强调</strong>、
+                <em>斜体表达柔和的语气</em>,以及行内的 <code>code()</code>
+                标识技术词。链接长这样
+                <a href="#">像这样</a> &mdash; 青色 + 虚线下划线,
+                鼠标悬停时会微微发光。
+            </p>
+
+            <p>列表也跟着宇宙调色板一起被样式化:</p>
+
+            <ul>
+                <li>第一个观察</li>
+                <li>第二个假设</li>
+                <li>第三根还没理清的线索</li>
+            </ul>
+
+            <h3>一个次级小标题</h3>
+            <p>
+                代码块用淡色背景,左侧带一条青色装饰条:
+            </p>
+
+<pre><code>// signal.js
+function transmit(payload) {
+    return new Promise(function (resolve) {
+        setTimeout(function () {
+            resolve({ status: 'received', echo: payload });
+        }, 280);
+    });
+}</code></pre>
+
+            <p>
+                引用块用来把一段话单独抽出来 &mdash; 引用、旁注、
+                或者从别处摘来的句子:
+            </p>
+
+            <blockquote>
+                <p>&ldquo;宇宙就在我们身体里。我们由星辰构成。
+                我们是宇宙认识自己的一种方式。&rdquo;</p>
+            </blockquote>
+
+            <hr/>
+
+            <p>
+                （结尾思考 &mdash; 你想留给读者的那个 takeaway、
+                那个未完的问题、那个值得带走的念头。）
+            </p>
+        </article>
+
+        <div class="post-end">
+            <span data-lang="en">// end of transmission</span>
+            <span data-lang="zh">// 传输结束</span>
+        </div>
     </main>
 
     <script src="../../js/cosmos-bg.js"></script>
+    <script src="../../js/cosmos-lang.js"></script>
 </body>
 
 </html>

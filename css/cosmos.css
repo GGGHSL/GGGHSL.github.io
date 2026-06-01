@@ -519,6 +519,49 @@ h1.post-title {
     letter-spacing: 0.06em;
 }
 
+/* ============================================================
+   bilingual toggle  (CN / EN)
+   set html.lang-en or html.lang-zh on <html> to control visibility;
+   each translatable element gets data-lang="en" or data-lang="zh"
+   ============================================================ */
+
+html.lang-en [data-lang="zh"] { display: none; }
+html.lang-zh [data-lang="en"] { display: none; }
+
+.lang-toggle {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.lang-toggle .label {
+    color: var(--text-faint);
+}
+.lang-toggle button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--text-faint);
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.lang-toggle button:hover {
+    color: var(--text-dim);
+}
+.lang-toggle button.active {
+    color: var(--cyan);
+    text-shadow: 0 0 6px rgba(126, 231, 255, 0.5);
+}
+.lang-toggle .divider {
+    color: var(--text-faint);
+    opacity: 0.5;
+}
+
 /* --- responsive + reduced motion --- */
 @media (max-width: 560px) {
     h1.hero { font-size: 1.7em; }
