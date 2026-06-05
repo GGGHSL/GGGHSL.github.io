@@ -411,3 +411,54 @@ a.btn {
     height: 100%;
     display: block;
 }
+
+/* Collapsible research summary in About */
+.research-fold {
+    margin-bottom: 1rem;
+}
+
+.research-fold > summary {
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+    margin-bottom: 0;
+}
+
+.research-fold > summary::-webkit-details-marker {
+    display: none;
+}
+
+.research-fold > summary::after {
+    content: " \25BE";
+    color: #8DC579;
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.research-fold[open] > summary::after {
+    content: " \25B4";
+}
+
+.research-fold > summary:hover {
+    color: #557E90;
+}
+
+.research-fold > p {
+    margin-top: 0.6rem;
+    margin-bottom: 0;
+}
+
+.research-fold[open] > p {
+    animation: research-fade 0.3s ease;
+}
+
+@keyframes research-fade {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
