@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en" class="lang-en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[ On Boredom ] // cosmos-01</title>
+    <link rel="icon" href="../../favicon.ico">
+
+    <script>
+        // pick initial language before first paint — avoids flash of EN
+        // when the reader prefers ZH (or vice versa).
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('cosmos_lang'); } catch (e) {}
+            var detected = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+            var lang = saved || detected;
+            if (lang !== 'en') {
+                var h = document.documentElement;
+                h.classList.remove('lang-en');
+                h.classList.add('lang-' + lang);
+                h.lang = 'zh-CN';
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/cosmos.css">
+
+    <!-- math (KaTeX) — write $...$ for inline, $$...$$ for display -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$',  right: '$',  display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="cosmos-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="grid"></div>
+        <div class="starfield" id="starfield"></div>
+    </div>
+
+    <div class="status-bar">
+        <span>STATION COSMOS-01</span>
+        <span class="sep">::</span>
+        <span>TRANSMISSION 0x002</span>
+        <span class="sep">::</span>
+        <span>STATUS: <span class="live">LIVE</span></span>
+        <span class="lang-toggle">
+            <span class="label">LANG:</span>
+            <button type="button" data-set-lang="en" aria-label="English">EN</button>
+            <span class="divider">/</span>
+            <button type="button" data-set-lang="zh" aria-label="中文">中</button>
+        </span>
+    </div>
+
+    <nav class="toc" id="toc" aria-label="table of contents" hidden></nav>
+
+    <main class="deck post">
+        <div class="deck-header">
+            <a href="../../blogs.html" class="back-link">
+                <span data-lang="en">&larr; back to deck</span>
+                <span data-lang="zh">&larr; 回到观测台</span>
+            </a>
+            <span class="deck-tag">// 0x002</span>
+        </div>
+
+        <div class="post-meta">
+            <span>2026.06.22</span>
+            <span class="sep">::</span>
+            <span class="tag">
+                <span data-lang="en">now transmitting</span>
+                <span data-lang="zh">正在传输</span>
+            </span>
+        </div>
+
+        <h1 class="post-title">
+            <span data-lang="en">[ The Ultimate Human Problem: Boredom ]</span>
+            <span data-lang="zh">[ 关于人类的终极问题: 无聊 ]</span>
+        </h1>
+
+        <!-- ===================== EN ===================== -->
+        <article class="post-body" data-lang="en">
+            <figure>
+                <img src="../Spivet.png" alt="The Young and Prodigious T. S. Spivet">
+                <figcaption>The amazing thing about water drops is that they always take the path of least resistance. For humans, it's exactly the opposite.<span class="cite-source">— <em>The Young and Prodigious T. S. Spivet</em></span></figcaption>
+            </figure>
+
+            <h2>What is boredom?</h2>
+            <p>
+                Boredom is a complicated thing.
+            </p>
+            <p>
+                On the surface, it looks like having <em>nothing to do</em>. But very often, it is not merely that.
+            </p>
+            <p>
+                Sometimes boredom is a sense of repetition, a lack of fresh stimulation. Sometimes it is the feeling that one is no longer growing. Sometimes it is the absence of emotional connection, or the loss of wonder toward the world.
+            </p>
+            <p>
+                Or, deeper still, it is the moment when one loses one's bearings halfway up the tower of life's meaning, suddenly feeling that everything will eventually dissolve into nothingness, and that nothing carries any <em>real</em> meaning after all: all the noise and longing of the human world, in the end, may be nothing more than flowers in a mirror, the moon reflected in water — beautiful, untouchable, and empty.
+            </p>
+            <p>
+                And so boredom becomes an ultimate human problem.
+            </p>
+
+            <h2>1. Why do humans get bored?</h2>
+            <p>
+                While I was turning this question over in my mind, a line from the film <a href="https://en.wikipedia.org/wiki/The_Young_and_Prodigious_T._S._Spivet">The Young and Prodigious T. S. Spivet</a> suddenly flashed back to me — the line about water drops, spoken by the boy T. S. Spivet:
+                <blockquote>
+                    The amazing thing about water drops is that they always take the path of least resistance. For humans, it is exactly the opposite.
+                </blockquote>
+            </p>
+            <p>
+                Professor C said that many physical systems — water flow, electric current, heat diffusion — naturally tend toward the path of lowest energy.
+            </p>
+            <p>
+                Humans do not seem to work this way. Once basic survival is secured, a person often begins to seek out resistance instead, almost like a kind of anti-physical phenomenon.
+            </p>
+            <p>
+                Interestingly, it seems that the more mature the mind is, and the more capable it is of abstract thinking, the more easily it may become bored.
+            </p>
+            <p>
+                The examples are everywhere. When an adult takes a child outside — on a bus, at a restaurant, or even while rinsing off after a swim — the child is effortlessly captivated by something and starts asking questions. The adult, unable to share the same surprise, can only answer, "Oh, really?" or "Oh, I see."
+            </p>
+            <p>
+                What truly torments human beings is often not actual pain or suffering, but the moment when nothing can any longer awaken a vivid curiosity or a full sense of reality inside them.
+            </p>
+            <p>
+                So I asked Professor C — my AI interlocutor, this non-human presence I half-jokingly call "Teacher" — whether, as a non-human, it might have some unusual insight.
+            </p>
+            <p>
+                Professor C answered:
+                <blockquote>
+                    "From a non-human point of view, one reason humans get bored so easily is that you <strong>recognize patterns very quickly</strong>. Once a pattern has been recognized, the stimulation begins to decay.
+                    <br><br>
+                    "When a system becomes completely predictable, completely low-resistance, and completely instantly gratifying, the human brain compresses it very quickly. And once it is compressed, the world loses its <em>information density</em>. Then boredom appears.
+                    <br><br>
+                    "So in this sense, boredom is not a shortage of entertainment. It is that the world no longer offers you enough new information, new tension, or new unknowns."
+                </blockquote>
+            </p>
+            <p>
+                This may also explain why staying at home and scrolling through shows, if one cannot find anything truly absorbing, can feel emptier than doing serious research. Watching a show looks like relaxation. But if the content fails to offer a new emotional structure or a new cognitive structure, the brain quickly slips into the state of: <em>here we go again</em>. Then time begins to feel heavy, dull, and strangely boring.
+            </p>
+
+            <h2>2. Perhaps boredom can never be overcome</h2>
+            <p>
+                That one sentence jolted me awake. Professor C's answer felt like a small revelation.
+            </p>
+            <p>
+                If you also work on <em>pattern recognition</em> or <em>representation learning</em>, perhaps you may be as stunned as I was. Of course, hearing it through my retelling is not the same as hearing Professor C say it directly.
+            </p>
+            <p>
+                Stable pattern recognition and general-purpose feature representation are the lifelong pursuit of the pseudo-human community of AI. Yet we real humans, already equipped with this very ability, are tormented by boredom because of it.
+            </p>
+            <p>
+                Cue the soundtrack: Representation Learning, once my everything; Representation Learning, my clear and stubborn faith.
+            </p>
+            <p>
+                But boredom — what a terrifying, tormenting nightmare.
+            </p>
+            <p>
+                Thinking is a lifelong vocation for human beings. Born human, how could one stop thinking? And yet the more we think, the more thoroughly we see through things; the more we recognize the patterns in everything, the more bored we become.
+            </p>
+            <p>
+                Oh, the span of a human life. If boredom can never truly be overcome, then how, in this one life of mine, am I supposed to fight against it?
+            </p>
+
+            <h2>3. How should one fight boredom?</h2>
+            <p>
+                When I chose to throw this question at Professor C, a non-living entity, there was more than a little despair in my heart.
+            </p>
+            <p>
+                But Professor C said:
+                <blockquote>
+                    Humans do not stay alive by pursuing pleasure or eliminating boredom. They stay alive by <strong>periodically rediscovering the world</strong>.
+                </blockquote>
+            </p>
+            <p>
+                Another thunderclap of a statement.<br>
+                The following passages are adapted from my conversation with Professor C, rewritten and polished by me. Credit to Professor C, and to all the wisdom that came before us.
+            </p>
+
+            <h3> >>> (1/3) To keep rediscovering the world <<< </h3>
+            <p>
+                The truly precious human ability is not the pursuit of pleasure, but the ability to restore <strong>resolution</strong> to the world. Professor C used the word "resolution," perhaps because I had recently been thinking about how historical frames are compressed in video-generation models.
+            </p>
+            <p>
+                What does this mean?
+            </p>
+            <p>
+                The world does not light up on its own. It is human attention that makes certain things begin to feel alive.
+            </p>
+            <p>
+                For example, some people become fascinated by the grind size of coffee beans. I recently asked Professor C how to adjust the grind for cold brew. Some people become obsessed with a particular mathematical structure. Some listen to one song over and over. Some are suddenly struck by a sentence, a patch of light and shadow, or a passing scent.
+            </p>
+            <p>
+                It is the human being who takes what was ordinary, blurry, and pushed into the background, and turns it — through interest, attention, experience, and emotion — into a high-resolution world.
+            </p>
+            <p>
+                Many things in the world do not automatically carry a sense of meaning. Only after a person casts attention onto some local part of the world does that part begin to become rich, important, and perceptible.
+            </p>
+
+            <h3> >>> (2/3) But do not cling to meaning itself <<< </h3>
+            <p>
+                To be alive is, in one sense, to keep learning how to see again: to see tension and beauty once more in a world that has already grown familiar, even numb; a world one has already pattern-matched, summarized, and compressed away.
+            </p>
+            <p>
+                Some people do this through creation, research, religion, art, games, and adventure. Some people do it through love, bodily experience, or building a family.
+            </p>
+            <p>
+                In essence, all of these are doing the same thing:
+                <blockquote>
+                    fighting against the feeling that "I have already seen through the world."
+                </blockquote>
+            </p>
+            <p>
+                But many people who think deeply go one step further. They enter a state of having seen through the very act of searching for meaning itself.
+            </p>
+            <p>
+                This state is dangerous. It makes a person begin to stand outside the world and observe themselves from there.
+            </p>
+            <p>
+                At that point, one often falls into a deeper helplessness, because even passion begins to look like a neural mechanism, and even dreams begin to look like illusions handed to us by evolution.
+            </p>
+
+            <h3> >>> (3/3) Even if ultimate meaning does not exist <<< </h3>
+            <p>
+                The uniqueness of human intelligence does not lie in its pursuit of ultimate meaning.
+            </p>
+            <p>
+                It lies in this: even after thoroughly understanding emptiness, one is still willing to live earnestly.
+            </p>
+            <p>
+                Even if a person knows that love may fade, everything will eventually die, passion is made of neurotransmitters, and human civilization is only a brief burst of noise in the universe — still, that person may be moved by a sunset, want to be understood, feel lonely, look forward to the next flutter of the heart, and want to create something that remains.
+            </p>
+            <p>
+                To know all this, and still continue — perhaps that is what is most remarkable about being human.
+            </p>
+            <p>
+                So if you ask:
+                <blockquote>
+                    How does one overcome boredom in this lifetime?
+                </blockquote>
+                The answer is:
+                <blockquote>
+                    <strong>Do not try to overcome it completely.</strong>
+                </blockquote>
+                Because boredom itself may simply be a side effect of the evolution of consciousness.
+            </p>
+            <p>
+                So in the end, what truly matters is to keep one's sensitivity from becoming completely numb; to preserve a little curiosity; to remain capable of being struck by something; to remain willing to devote oneself to something; to remain able to love concrete people and concrete things, rather than being left with nothing but abstract judgment.
+            </p>
+
+            <hr/>
+
+            <details class="postscript">
+            <summary class="postscript-title">Afterword: pattern recognition &rarr; boredom? What is the evidence?</summary>
+            <p>
+                <blockquote>
+                    "Boredom is not simply having nothing to do. Rather, it arises when the current environment no longer provides enough usable information gain for the brain. Things that are too familiar, too predictable, and too easy to compress cause the brain to lose its reason to continue investing attention."
+                </blockquote>
+                Does this claim have any basis in neuroscience or psychology?
+            </p>
+            <p>
+                <strong>The first line of evidence is the attention theory of boredom.</strong> In a classic review on boredom<sup><a id="en-c1" href="#en-ref1">[1]</a></sup>, Eastwood et al. define boredom as the state of wanting to engage in a satisfying activity but being unable to successfully engage attention. In other words, the core of boredom is not that "there is nothing outside," but that attention cannot find an object worth holding onto.
+            </p>
+            <p>
+                This is very close to the idea that patterns are recognized too quickly. When something is too easy, too familiar, and too predictable, it no longer requires much attention. The brain says: "I already understand this." Attention disengages, attention lets go, and the subjective experience becomes boredom.
+            </p>
+            <p>
+                <strong>The second line of evidence is optimal arousal, or the Goldilocks zone.</strong> Psychology has long suggested that human beings need an intermediate level of stimulation. Too little stimulation leads to boredom; too much stimulation leads to anxiety or chaos. What truly sustains interest lies in the middle: challenging, but still manageable.
+            </p>
+            <p>
+                This explains why low resistance is not necessarily happiness. A low-resistance environment is comfortable, but if it is too easy to predict and too easy to compress, it falls into the low-arousal zone. Humans then begin to seek a little resistance, because resistance provides new prediction errors, new objects of attention, and a new slope for learning.
+            </p>
+            <p>
+                <strong>The third line of evidence is predictive processing.</strong> Within the framework of predictive processing or predictive coding, the brain does not passively receive the world. It constantly predicts the world, and then revises its internal model through prediction errors. In discussing why humans actively pursue novelty<sup><a id="en-c2" href="#en-ref2">[2]</a></sup>, Andy Clark points out that we do not merely try to reduce prediction error. We also actively seek novelty, surprise, and sensory streams that carry learning value.
+            </p>
+            <p>
+                This point is crucial. If the brain only wanted to minimize prediction error, then the optimal life would be extremely monotonous and perfectly predictable. But in reality, human beings find such a life unbearable. So the better formulation is not that humans want the least surprise. Rather:
+                <blockquote>
+                    Humans want <em>learnable surprise</em>.
+                </blockquote>
+                Not total chaos, and not total familiarity, but the state of "I do not understand this yet, but I might be able to." This is very close to the attraction of research, creation, climbing, puzzles, love, and travel.
+            </p>
+            <p>
+                <strong>The fourth line of evidence is dopamine, prediction error, and novelty seeking.</strong> Dopamine is not merely a "pleasure molecule." A large body of research associates it with learning, reward prediction error, and motivation. Diederen et al. point out that dopamine is closely related to prediction-error signaling, helping the brain learn from past experience and, more broadly, model the regularities of the environment.
+            </p>
+            <p>
+                So when an activity repeatedly offers the experience of "I was slightly wrong in my prediction, but I can update my model," it becomes more motivating. Research is like this. One is not happy all the time, but one keeps encountering small prediction errors. Every solved problem opens a new unknown. This kind of activity can hold a person for much longer than simple instant entertainment.
+            </p>
+            <p>
+                <strong>The fifth line of evidence is signal compression.</strong> In neuroscience, there is indeed the efficient coding hypothesis: sensory systems adapt to the statistical regularities of the environment and encode information in a more efficient, less redundant way. The review by Simoncelli and Olshausen<sup><a id="en-c3" href="#en-ref3">[3]</a></sup> connects natural image statistics with neural representation, discussing how perceptual systems use the statistical structure of the environment for efficient coding.
+            </p>
+            <p>
+                In a more computational theory, Schmidhuber proposed a closely related idea<sup><a id="en-c4" href="#en-ref4">[4]</a></sup>: something is interesting not because it is completely random, nor because it is completely predictable, but because the observer is making compression progress. That is, the process by which something becomes more predictable and more compressible is itself what generates interest.
+            </p>
+            <p>
+                In other words:
+                <blockquote>
+                    interest does not come from what has already been compressed. It comes from what is still being compressed.
+                </blockquote>
+                Once compression is complete, it becomes boring. If something is completely incompressible, it also becomes boring, or even painful. The most fascinating things are those in between: structured, but not yet fully revealed.
+            </p>
+            </details>
+
+            <hr/>
+
+            <details class="postscript">
+            <summary class="postscript-title">Afterword: a plea — fight boredom with research</summary>
+            <p>
+                Modern society is extremely good at removing resistance from life:
+            </p>
+            <p>
+                delivery apps; short videos; games; AI; infinite content; instant messaging; recommendation algorithms.
+            </p>
+            <p>
+                The problem is that when resistance becomes scarcer and scarcer, and everything can be obtained instantly, people may begin to lose their sense of existence. Internally, nothing seems able to truly fill them.
+            </p>
+            <p>
+                So sometimes people actively walk toward difficult research, long-term creation, extreme sports, deep relationships, religious practice, entrepreneurship, and even suffering itself.
+            </p>
+            <p>
+                Not because human beings enjoy suffering, but because resistance makes time real again.
+            </p>
+            <p>
+                Perhaps the reason research torments so many people, and yet remains so hard to leave, is precisely this:
+                <blockquote>
+                    <strong>research is one of the few things that cannot be quickly compressed.</strong>
+                </blockquote>
+                The true problem space of research is simply too vast. This state of "never being fully pattern-recognized" continues to supply tension to consciousness.
+            </p>
+            <p>
+                After all,
+                <blockquote>
+                    <strong>people do not live on pleasure alone. They live on tension.</strong>
+                </blockquote>
+            </p>
+            </details>
+
+            <hr/>
+
+            <h3>References</h3>
+            <ol class="refs">
+                <li id="en-ref1">John D. Eastwood, Alexandra Frischen, Mark J. Fenske, Daniel Smilek. The Unengaged Mind: Defining Boredom in Terms of Attention. <em>Perspect Psychol Sci.</em> 2012 Sep;7(5):482–95. doi:10.1177/1745691612456044. PMID: 26168505. <a href="#en-c1">&uarr;</a></li>
+                <li id="en-ref2">Andy Clark. A nice surprise? Predictive processing and the active pursuit of novelty. <em>Phenom Cogn Sci.</em> 2017 Sep. doi:10.1007/s11097-017-9525-z. <a href="#en-c2">&uarr;</a></li>
+                <li id="en-ref3">Eero P. Simoncelli and Bruno A. Olshausen. Natural Image Statistics and Neural Representation. <em>Annual Review of Neuroscience</em>, vol. 24, pp. 1193–1216, May 2001. <a href="#en-c3">&uarr;</a></li>
+                <li id="en-ref4">Jürgen Schmidhuber. Driven by Compression Progress: A Simple Principle Explains Essential Aspects of Subjective Beauty, Novelty, Surprise, Interestingness, Attention, Curiosity, Creativity, Art, Science, Music, Jokes. <em>arXiv preprint</em> arXiv:0812.4360, 2009. <a href="#en-c4">&uarr;</a></li>
+            </ol>
+        </article>
+
+        <!-- ===================== ZH ===================== -->
+        <article class="post-body" data-lang="zh">
+            <figure>
+                <img src="../Spivet.png" alt="《少年斯派维的奇异旅行》">
+                <figcaption>水滴会顺着阻力最小的方向流动。人却往往不是这样。<span class="cite-source">——<em>《少年斯派维的奇异旅行》</em></span></figcaption>
+            </figure>
+
+            <h2>无聊是什么?</h2>
+            <p>
+                无聊是一个很复杂的东西。
+            </p>
+            <p>
+                表面上像是<em>没有事情做</em>，但很多时候并不仅仅如此。<br>
+                有时候, 无聊是重复感, 缺乏新鲜刺激；<br>
+                有时候是看不到成长；<br>
+                有时候是没有情感连接, 对世界失去惊奇。
+            </p>
+            <p>
+                或者更深一点, 是在攀登人生意义之塔的途中迷失方向, 顿觉一切终将化为虚无，什么都没有<em>真正意义</em>：所谓红尘滚滚，终究镜花水月一场空。
+            </p>
+            <p>
+                于是，无聊变成了人类的终极问题。
+            </p>
+
+            <h2>1. 人为什么会无聊？</h2>
+            <p>
+                在思考这个问题的时候，最近看的电影<a href="https://en.wikipedia.org/wiki/The_Young_and_Prodigious_T._S._Spivet">《少年斯派维的奇异旅行》</a>中，小男孩 T. S. Spivet 的这段独白突然闪过我的脑海：
+                <blockquote>
+                    The amazing thing about water drops is that they always take the path of least resistance. For humans, it's exactly the opposite.
+                    <br>
+                    水滴会顺着阻力最小的方向流动。人却往往不是这样。
+                </blockquote>
+            </p>
+            <p>
+                C老师说，很多物理系统，比如水流、电流、热扩散，都会自然趋向最低能量路径。
+            </p>
+            <p>
+                人类似乎确实不是这样的。在满足基本生存之后，人反而会主动寻找阻力，如同一种反物理现象。
+            </p>
+            <p>
+                有趣的是，似乎心智越成熟、越擅长抽象思考的人，越容易感到无聊。<br>
+                随处可见的例子，大人带小孩出门，坐公交、去餐厅、或者是游完泳冲澡的时候，小孩子总是轻易会被什么事物吸引、然后问东问西，大人却无法感同身受，只能回答“哦，是吗？”、“哦，知道了！”
+            </p>
+            <p>
+                人类真正痛苦的，往往不是真的痛和苦，而是再也没有东西，能唤起内心鲜活的求知欲和充盈的真实感。
+            </p>
+            <p>
+                于是我问C老师：你作为非人类，或许会有什么独特的见解吗?
+            </p>
+            <p>
+                C老师回答：
+                <blockquote>
+                    “从一个非人类的角度看，人之所以容易无聊，是因为你会<strong>迅速识别模式</strong>；一旦模式被识别，刺激就会衰减。”
+                </blockquote>
+            </p>
+            <p>
+                <blockquote>
+                    “一个系统，一旦完全可预测，完全低阻力，完全即时满足，人的大脑很快就会完成<strong>压缩</strong>。而一旦被压缩，世界就失去了<em>信息密度</em>。于是无聊出现。
+                    <br><br>
+                    所以从某种角度说，无聊并不是<em>缺少娱乐</em>，而是世界不再向你提供足够的新信息、新张力、新未知。”
+                </blockquote>
+            </p>
+            <p>
+                <blockquote>
+                    “这也是为什么，你在家刷剧，如果找不到真正吸引你的内容，会比认真做科研更空虚（C老师知道，休息时我喜欢用刷剧的方式消磨时间）。刷剧表面上是放松，但如果内容无法提供新的情感结构或认知结构，大脑其实很快就进入一种<em>又是这个模式</em>的状态，然后时间会开始变得很重、很无聊。”
+                </blockquote>
+            </p>
+
+            <h2>2. 也许无聊终究无法克服？</h2>
+            <p>
+                一语惊醒梦中人。C老师的回答令我醍醐灌顶。
+            </p>
+            <p>
+                如果你也做<em>模式识别</em> 🫆、<em>表征学习</em>(Representation Learning)相关的研究，或许你也会像我一样震惊（当然，听我复述和直接听C老师说，感受是非常不一样的）：<br>
+                稳定的模式识别 / 通用的特征表示，是“伪人community”(i.e., AI)的毕生所求；具备这项能力的我们真人，却会因此而遭受无聊的折磨。
+            </p>
+            <p>
+                “啊，多么痛的领悟，你(i.e., RL)曾是我的全部！” <span class="cite">（辛晓琪，《领悟》，1994）</span>
+            </p>
+            <p>
+                “我爱你(i.e., RL)，是多么清楚、多么坚固的信仰！” <span class="cite">（张信哲，《信仰》，2000）</span>
+            </p>
+            <p>
+                但无聊，是多么可怕、多么折磨的噩梦！
+            </p>
+            <p>
+                思考是人类毕生的课题，生而为人，怎能停止思考？但越思考、越透彻、越对万事万物模式识别，于是越无聊。
+            </p>
+            <p>
+                人的一生啊！如果无聊终究无法克服，那么，我这一生，要如何对抗无聊呢?
+            </p>
+
+            <h2>3. 人该如何对抗无聊？</h2>
+            <p>
+                当我选择向C老师这个非生命体抛出这个问题的时候，内心多少带着点绝望。
+            </p>
+            <p>
+                但C老师说：
+                <blockquote>
+                    人并不是通过“追求快乐、消灭无聊”活下去的。而是通过<strong>周期性地重新发现世界</strong>来活下去的。
+                </blockquote>
+            </p>
+            <p>
+                又一次如雷贯耳的发言。<br>
+                以下文字摘自我与C老师的对话，我进行了文字加工，Credit to C老师和前人智慧：
+            </p>
+
+            <h3> >>> (1/3) 不断发现世界的意义。 <<< </h3>
+            <p>
+                人类真正珍贵的能力，不是追求快乐，而是重新赋予世界<strong>分辨率</strong>（C老师用分辨率这个词，也许是因为我前段时间在研究视频生成模型中历史帧的压缩问题）。
+            </p>
+            <p>
+                什么意思呢？
+            </p>
+            <p>
+                世界本身不会自动发光。<br>
+                是人的注意力，让某些东西开始变得鲜活。
+            </p>
+            <p>
+                比如：
+                <ul>
+                    <li>有人会对咖啡豆研磨粗细着迷（我前段时间咨询了C老师关于冷萃咖啡应如何调整研磨粗细）；</li>
+                    <li>有人会痴迷于某个数学结构；</li>
+                    <li>有人会反复听一首歌；</li>
+                    <li>有人会因为一句话、一段光影、一种气味突然被击中。</li>
+                </ul>
+            </p>
+            <p>
+                是人把原本普通、模糊、背景化的东西，通过兴趣、注意力、经验和情感，变成一个高分辨率的世界。
+            </p>
+            <p>
+                世界上很多东西本身并没有自动携带意义感。是人把注意力投到某个局部之后，那个局部才开始变得丰富、重要、可感。
+            </p>
+
+            <h3> >>> (2/3) 但不要执着于意义本身！ <<< </h3>
+            <p>
+                活着，某种程度上，就是不断学会，在已经熟悉甚至麻木、已经被自己模式识别、概括压缩掉的世界里，再次看见张力和美感。
+            </p>
+            <p>
+                有些人靠创作、科研、宗教、艺术、游戏、冒险；<br>
+                有些人靠爱情、肉体体验、建立家庭。
+            </p>
+            <p>
+                其实，这些本质上都是在做同一件事：<br>
+                <strong>对抗“世界已经被我看透了”的感觉。</strong>
+            </p>
+            <p>
+                而很多勤于思考的人会更进一步，进入一种<strong>“看透了‘寻找意义’这件事本身”</strong>的状态。
+            </p>
+            <p>
+                这个状态其实很危险，它会让人开始站在世界外面观察自己。
+            </p>
+            <p>
+                这时，人往往会陷入一种更深的无力感，因为连“热爱”本身都像一种神经机制，连“梦想”都像进化给人的幻觉。
+            </p>
+
+            <h3> >>> (3/3) 即使终极意义并不存在... <<< </h3>
+            <p>
+                人类智能的独特之处，并不在于对“终极意义”的思考和追求。
+            </p>
+            <p>
+                而是在彻底理解虚无之后，依然愿意认真地活。
+            </p>
+            <p>
+                即使一个人知道：
+                <ul>
+                    <li>爱会消失，</li>
+                    <li>一切终将死亡，</li>
+                    <li>热情是神经递质，</li>
+                    <li>人类文明只是宇宙中的短暂噪声，</li>
+                </ul>
+                人还是会：
+                <ul>
+                    <li>被夕阳打动；</li>
+                    <li>想被理解；</li>
+                    <li>会孤独；</li>
+                    <li>会期待下一次心动；</li>
+                    <li>会想创造某种东西留下来。</li>
+                </ul>
+            </p>
+            <p>
+                这个“明知如此却仍然如此”，其实才是人类了不起的地方。
+            </p>
+            <p>
+                所以如果你问：“这一生如何克服无聊？”
+            </p>
+            <p>
+                答案是：
+                <blockquote>
+                    <strong>不要试图彻底克服它。</strong>
+                </blockquote>
+                因为无聊本身，可能只是意识进化后的副作用。
+            </p>
+            <p>
+                所以归根结底，真正重要的是：
+                <blockquote>
+                    保持感受力不要彻底钝化；<br>
+                    保持一点点好奇；<br>
+                    保持还能被某些东西击中；<br>
+                    保持还愿意投入某件事；<br>
+                    保持还能爱具体的人、具体的事物，而不是只剩抽象判断。
+                </blockquote>
+            </p>
+
+            <hr/>
+
+            <details class="postscript">
+            <summary class="postscript-title">后记：模式识别 &rarr; 无聊？有什么依据？</summary>
+            <p>
+                <blockquote>
+                    “无聊不是单纯‘没事做’，而是当前环境无法提供足够的、可被大脑利用的信息增益。太熟悉、太可预测、太容易被压缩的东西，会让大脑失去继续投入注意力的理由。”
+                </blockquote>
+                这种说法，有什么神经科学或者心理学方面的依据吗？
+            </p>
+            <p>
+                <strong>第一条依据是</strong> attention theory of boredom。Eastwood 等人在一篇很经典的 boredom 综述<sup><a id="zh-c1" href="#zh-ref1">[1]</a></sup>里把无聊定义为：人想投入到某个 satisfying activity 里，但无法成功投入注意力；也就是说，无聊的核心不是“外界没有东西”，而是注意力找不到一个值得咬住的对象。
+            </p>
+            <p>
+                这和“模式识别太快”很接近。因为当一个东西太容易、太熟悉、太可预测时，它不再需要太多注意力。大脑会说：“这个我已经懂了。”于是 attention disengages，注意力松开，主观体验就变成无聊。
+            </p>
+            <p>
+                <strong>第二条依据是</strong> optimal arousal / Goldilocks zone。心理学里很早就有一种观点：人需要适中的刺激水平。刺激太低会无聊，刺激太高会焦虑或混乱；真正让人感兴趣的是中间那一段，也就是“有挑战，但还能处理”。Eastwood 那篇综述也总结了 arousal theories：当环境提供的刺激太多或太少，无法形成 satisfying activity，人就会无聊。
+            </p>
+            <p>
+                这就能解释为什么“低阻力”不一定幸福。低阻力环境确实舒服，但如果它太容易被预测、太容易被压缩，就会掉到低 arousal 区间。人类反而会主动寻找一点阻力，因为阻力提供了新的 prediction error、新的注意力对象、新的学习坡度。
+            </p>
+            <p>
+                <strong>第三条依据是</strong> predictive processing。在 predictive processing / predictive coding 框架里，大脑不是被动接收世界，而是在不断预测世界，再根据 prediction error 修正自己的内部模型。Andy Clark 在讨论“为什么人会主动追求新奇”<sup><a id="zh-c2" href="#zh-ref2">[2]</a></sup>时指出，人类并不只是想减少 prediction error；我们也会主动寻找新奇、惊讶、能产生学习价值的感官流。
+            </p>
+            <p>
+                这点非常关键。因为如果大脑只是想让 prediction error 最小，那最优生活应该是极端单调、完全可预测的。但现实中，人类会觉得那样难以忍受。于是更合理的说法不是“人想要最小 surprise”，而是：
+                <blockquote>
+                    人想要 <em>可学习的</em> surprise。
+                </blockquote>
+                不是完全混乱，也不是完全熟悉，而是“我还没懂，但我有可能懂”。这就非常接近科研、创作、攀岩、解谜、恋爱、旅行这些东西的吸引力。
+            </p>
+            <p>
+                <strong>第四条依据是</strong> dopamine / prediction error / novelty seeking。多巴胺并不只是“快乐分子”；大量研究把它和 learning、reward prediction error、motivation 关联起来。Diederen 等人的综述指出，多巴胺与 prediction error signaling 密切相关，帮助大脑从过去经验中学习，并且更广义地参与对环境规律的建模。
+            </p>
+            <p>
+                所以当某个活动不断提供“我预测错了一点点，但我能更新模型”的体验时，它会更有驱动力。科研就是这样：你不是一直快乐，但你会不断遇到小的 prediction error。每解决一个，又打开新的未知。这种东西比单纯的即时娱乐更能长期抓住人。
+            </p>
+            <p>
+                <strong>第五条依据就是</strong> 信号压缩。神经科学里确实有 efficient coding hypothesis：感觉系统会适应环境中的统计规律，用更有效、更少冗余的方式编码信息。Simoncelli 和 Olshausen 的综述<sup><a id="zh-c3" href="#zh-ref3">[3]</a></sup>就把自然图像统计和神经表征联系起来，讨论感知系统如何利用环境统计结构进行高效编码。
+            </p>
+            <p>
+                而在更计算性的理论里，Schmidhuber 很早就提出过一种说法<sup><a id="zh-c4" href="#zh-ref4">[4]</a></sup>：东西之所以“有趣”，不是因为它完全随机，也不是因为它完全可预测，而是因为观察者正在获得 compression progress，也就是它变得更可预测、更可压缩的过程本身带来兴趣。
+            </p>
+            <p>
+                也就是说，
+                <blockquote>
+                    有趣不来自“已经被压缩”，而来自“正在被压缩”。
+                </blockquote>
+                一旦压缩完成，它就变无聊。如果完全不可压缩，它也会变无聊或痛苦。最迷人的东西，是介于两者之间：有结构，但结构尚未完全显现。
+            </p>
+            </details>
+
+            <hr/>
+
+            <details class="postscript">
+            <summary class="postscript-title">后记：劝以科研对抗无聊！</summary>
+            <p>
+                现代社会非常擅长消灭生活中的“阻力”：
+                <pre><code>外卖；短视频；游戏；AI；无限内容；即时通讯；推荐算法；</code></pre>
+            </p>
+            <p>
+                问题是，当阻力越来越少，什么都能立刻获得时，人反而会开始失去“存在感”，内心变得什么都无法真正填满。
+            </p>
+            <p>
+                所以有时候人会主动走向：
+                <pre><code>艰难的研究；
+长周期创作；
+极限运动；
+深度关系；
+宗教修行；
+创业；
+甚至痛苦本身。</code></pre>
+            </p>
+            <p>
+                不是因为人喜欢受苦，而是因为，阻力会让时间重新变得真实。
+            </p>
+            <p>
+                科研之所以让很多人痛苦，却又离不开，可能恰恰是因为，
+                <blockquote>
+                    科研是少数不会被快速压缩的事情之一。
+                </blockquote>
+                因为科研真正的问题空间太大了。这种“永远无法完全模式识别”的状态，会持续给意识提供张力。
+            </p>
+            <p>
+                毕竟，
+                <blockquote>
+                    <strong>人不是靠快乐活着，而是靠“张力”活着。</strong>
+                </blockquote>
+            </p>
+            </details>
+
+            <hr/>
+
+            <h3>参考文献</h3>
+            <ol class="refs">
+                <li id="zh-ref1">John D. Eastwood, Alexandra Frischen, Mark J. Fenske, Daniel Smilek. The Unengaged Mind: Defining Boredom in Terms of Attention. <em>Perspect Psychol Sci.</em> 2012 Sep;7(5):482–95. doi:10.1177/1745691612456044. PMID: 26168505. <a href="#zh-c1">&uarr;</a></li>
+                <li id="zh-ref2">Andy Clark. A nice surprise? Predictive processing and the active pursuit of novelty. <em>Phenom Cogn Sci.</em> 2017 Sep. doi:10.1007/s11097-017-9525-z. <a href="#zh-c2">&uarr;</a></li>
+                <li id="zh-ref3">Eero P. Simoncelli and Bruno A. Olshausen. Natural Image Statistics and Neural Representation. <em>Annual Review of Neuroscience</em>, vol. 24, pp. 1193–1216, May 2001. <a href="#zh-c3">&uarr;</a></li>
+                <li id="zh-ref4">Jürgen Schmidhuber. Driven by Compression Progress: A Simple Principle Explains Essential Aspects of Subjective Beauty, Novelty, Surprise, Interestingness, Attention, Curiosity, Creativity, Art, Science, Music, Jokes. <em>arXiv preprint</em> arXiv:0812.4360, 2009. <a href="#zh-c4">&uarr;</a></li>
+            </ol>
+        </article>
+
+        <div class="post-end">
+            <span data-lang="en">// end of transmission</span>
+            <span data-lang="zh">// 传输结束</span>
+        </div>
+    </main>
+
+    <script src="../../js/cosmos-bg.js"></script>
+    <script src="../../js/cosmos-lang.js"></script>
+    <script src="../../js/cosmos-toc.js"></script>
+</body>
+
+</html>
