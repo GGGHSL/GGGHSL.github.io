@@ -197,6 +197,7 @@ section.block {
 }
 
 .packet {
+    position: relative;
     padding: 18px 22px;
     border: 1px solid rgba(126, 231, 255, 0.08);
     border-left: 2px solid rgba(126, 231, 255, 0.25);
@@ -204,6 +205,16 @@ section.block {
     margin-bottom: 14px;
     background: rgba(126, 231, 255, 0.015);
     transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+/* post date pulled from each post's index.html, top-right of the card */
+.packet .packet-date {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72em;
+    color: var(--text-faint);
+    letter-spacing: 0.06em;
 }
 .packet:hover {
     border-color: rgba(126, 231, 255, 0.3);
