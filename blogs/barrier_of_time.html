@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en" class="lang-en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[ Within the Barrier of Time ] // cosmos-01</title>
+    <link rel="icon" href="../favicon.ico">
+
+    <script>
+        // pick initial language before first paint — avoids flash of EN
+        // when the reader prefers ZH (or vice versa).
+        (function () {
+            var saved;
+            try { saved = localStorage.getItem('cosmos_lang'); } catch (e) {}
+            var detected = (navigator.language || '').toLowerCase().indexOf('zh') === 0 ? 'zh' : 'en';
+            var lang = saved || detected;
+            if (lang !== 'en') {
+                var h = document.documentElement;
+                h.classList.remove('lang-en');
+                h.classList.add('lang-' + lang);
+                h.lang = 'zh-CN';
+            }
+        })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cosmos.css">
+
+    <!-- math (KaTeX) — write $...$ for inline, $$...$$ for display -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        { left: '$$', right: '$$', display: true },
+                        { left: '$',  right: '$',  display: false },
+                        { left: '\\(', right: '\\)', display: false },
+                        { left: '\\[', right: '\\]', display: true }
+                    ],
+                    throwOnError: false
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="cosmos-bg" aria-hidden="true">
+        <div class="nebula"></div>
+        <div class="grid"></div>
+        <div class="starfield" id="starfield"></div>
+    </div>
+
+    <div class="status-bar">
+        <span>STATION COSMOS-01</span>
+        <span class="sep">::</span>
+        <span>TRANSMISSION 0x003</span>
+        <span class="sep">::</span>
+        <span>STATUS: <span class="live">LIVE</span></span>
+        <span class="lang-toggle">
+            <span class="label">LANG:</span>
+            <button type="button" data-set-lang="en" aria-label="English">EN</button>
+            <span class="divider">/</span>
+            <button type="button" data-set-lang="zh" aria-label="中文">中</button>
+        </span>
+    </div>
+
+    <main class="deck post">
+        <div class="deck-header">
+            <a href="../blogs.html" class="back-link">
+                <span data-lang="en">&larr; back to deck</span>
+                <span data-lang="zh">&larr; 回到观测台</span>
+            </a>
+            <span class="deck-tag">// 0x003</span>
+        </div>
+
+        <div class="post-meta">
+            <span>2026.06.30</span>
+            <span class="sep">::</span>
+            <span class="tag">
+                <span data-lang="en">now transmitting</span>
+                <span data-lang="zh">正在传输</span>
+            </span>
+        </div>
+
+        <h1 class="post-title">
+            <span data-lang="en">[ Within the Barrier of Time ]</span>
+            <span data-lang="zh">[ 在时间结界之内 ]</span>
+        </h1>
+
+        <!-- ===================== EN ===================== -->
+        <article class="post-body" data-lang="en">
+            <p>
+                Maybe <a href="https://en.wikipedia.org/wiki/The_Three-Body_Problem_(novel)">The Three-Body Problem</a> has left too deep a mark on me.
+            </p>
+
+            <p>
+                I find the whole setup of countries, nationalities, and borders unbearably boring.
+            </p>
+
+            <p>
+                I truly believe they will eventually be abolished, and that we are the sacrificed generation.
+            </p>
+
+            <p>
+                They are so boring that I might as well call them QWE.
+            </p>
+
+            <p>
+                When QWE is finally erased, who knows how far human technology will have enabled us to travel through space.<br>
+                Perhaps interstellar travel will already be possible by then.
+            </p>
+
+            <p>
+                But for humans born into this age like us and still bound by QWE, Earth is the only map we are allowed to walk.
+            </p>
+
+            <p>
+                We look up at the sky, yet our feet remain on the ground, because between us and everything beyond Earth lies a vast barrier of time.
+            </p>
+
+            <p>
+                How hopeless that is. And yet, there is nothing we can do about it now.
+            </p>
+
+            <p>
+                <strong>BUT ON TOP OF THIS POWERLESSNESS, WHAT HAVE HUMANS DONE?</strong>
+            </p>
+
+            <p>
+                They have built yet more barriers on Earth itself.
+            </p>
+
+            <p>
+                How absurd.
+            </p>
+        </article>
+
+        <!-- ===================== ZH ===================== -->
+        <article class="post-body" data-lang="zh">
+            <p>
+                也许是受<a href="https://en.wikipedia.org/wiki/The_Three-Body_Problem_(novel)">《三体》</a>影响太深了。
+            </p>
+
+            <p>
+                我觉得国家、国籍、国界的设置太无聊了。
+            </p>
+
+            <p>
+                我坚信他们终将被取缔，而我们则是被牺牲一代。
+            </p>
+
+            <p>
+                太无聊了所以统称他们为 QWE 吧。
+            </p>
+
+            <p>
+                当 QWE 被消灭的时候，不知道那时候人类科技能助力人类在什么范围的空间移动。<br>
+                也许已经实现星际旅行了也说不定。
+            </p>
+
+            <p>
+                但对我们这些被 QWE 束缚的人类来说，地球是我们唯一可以行走的版图。
+            </p>
+
+            <p>
+                我们仰望天空但只能脚踏实地。因为我们与地球之外隔着漫长的时间结界。
+            </p>
+
+            <p>
+                这是多么令人绝望的事，但现在的我们无可奈何。
+            </p>
+
+            <p>
+                <strong>但是在这无奈之上，现在的人类干了什么？</strong>
+            </p>
+
+            <p>
+                他们在地球上又人造了结界！
+            </p>
+
+            <p>
+                多么荒唐！
+            </p>
+        </article>
+
+        <div class="post-end">
+            <span data-lang="en">// end of transmission</span>
+            <span data-lang="zh">// 传输结束</span>
+        </div>
+    </main>
+
+    <script src="../js/cosmos-bg.js"></script>
+    <script src="../js/cosmos-lang.js"></script>
+</body>
+
+</html>
