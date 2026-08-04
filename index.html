@@ -180,6 +180,42 @@
                 </script>
 
                 <!-- <div class="year-divider"><h2>2025</h2></div> -->
+                <!-- E.T. Representation -->
+                <div class="publication_container" onclick="toggleDetails('ET-Rep2026');">
+                    <div class="publication_image"><img src="img/pipeline_OWM.svg"/></div>
+                    <div class="publication_info">
+                        <div class="publication_title">
+                            Slots, Transitions, Loops: Learning Object-Centric World Models for ARC
+                        </div>
+                        <div class="publication_venue">Under Review, 2026</div>
+                        <div class="publication_authors">
+                            <span class="link-self">Gege Gao</span><sup>&dagger;</sup>,
+                            Bernhard Schölkopf,
+                            Andreas Geiger
+                        </div>
+                        <div class="publication_links">
+                            <a href="https://arxiv.org/abs/2608.00626">[arXiv]</a>
+                            <!-- <a href="https://graphdreamer.github.io">[Website]</a> -->
+                            <!-- <a>[Code: Coming Soon]</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="publication_detail" id="ET-Rep2026">
+                    <div class="publication_abstract">
+                        <b>Abstract:</b> The target representation defines the distribution an image generator must learn, yet it is often treated as an interchangeable interface. This assumption is particularly questionable for continuous masked generators, which combine contextual inference from visible tokens with conditional modeling of each missing token. We study raw pixels, SD-VAE latents and DINOv2 as well as MAE representation-autoencoder features within a unified masked autoregressive rectified-flow model. Under a shared ImageNet training budget, these spaces exhibit distinct optimization and inference regimes. DINOv2 converges fastest in both iterations and computation but benefits strongly from a wider local denoiser and direct context fusion. Pixels optimize substantially more slowly and require a different prediction, masking, and guidance configuration. MAE reconstructs images more faithfully and exhibits clear semantic clustering, yet produces generations substantially worse than DINOv2. The representations also respond differently to classifier-free guidance and occupy distinct precision-recall trade-offs. Together, our results show that compression, reconstruction fidelity, token dimensionality, and visible semantic clustering do not individually predict generative behavior. Instead, target representations redistribute difficulty across contextual modeling, per-token denoising, and inference-time distributional control.
+
+                        <div style="margin-top: 12px;"><b>BibTeX:</b></div>
+                        <pre style="font-size: 0.85em; background: #f5f5f5; padding: 8px; margin-top: 2px;">@article{gao2026loopowm,
+  title = {Where Does Generative Difficulty Reside? An Empirical Study of Target Representations},
+  author = {Plocher, Marcel and Schölkopf, Bernhard and Geiger, Andreas and Gao, Gege},
+  journal = {arXiv preprint arXiv:2608.00626},
+  year = {2026}
+}</pre>
+                    </div>
+                    <div class="publication_links">
+                    </div>
+                </div>
+
                 <!-- Loop-OWM -->
                 <div class="publication_container" onclick="toggleDetails('Loop-OWM2026');">
                     <div class="publication_image"><img src="img/pipeline_OWM.svg"/></div>
